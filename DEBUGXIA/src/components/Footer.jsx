@@ -226,10 +226,17 @@ const Footer = () => {
               </a>
 
               <a
-                href="mailto:sikdarritisha@gmail.com"
+                href="mailto:jeetchakrabortyx9@gmail.com"
                 className="hover:text-white transition-colors"
               >
-                sikdarritisha@gmail.com
+                jeetchakrabortyx9@gmail.com
+              </a>
+
+              <a
+                href="mailto:abirsanyal99@gmail.com"
+                className="hover:text-white transition-colors"
+              >
+                abirsanyal99@gmail.com
               </a>
             </div>
           </div>
