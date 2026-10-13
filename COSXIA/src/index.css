@@ -37,4 +37,30 @@ html, body, #root {
   background: black;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-135px);
+  }
+}
+
+.animate-wave {
+  animation: waveMove 5s linear infinite;
+  transform-origin: center;
+}

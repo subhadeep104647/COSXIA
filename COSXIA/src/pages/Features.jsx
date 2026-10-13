@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShieldAlert, SearchCode, BrainCircuit, Wrench,} from "lucide-react";
+import {
+  ShieldAlert,
+  SearchCode,
+  BrainCircuit,
+  Wrench,
+} from "lucide-react";
 
 const Features = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -16,7 +21,7 @@ const Features = () => {
         "Semgrep detects suspicious patterns and vulnerabilities, while the AI model analyzes the finding to understand its security context.",
       tags: ["Semgrep CE", "Static Analysis", "Security"],
       icon: ShieldAlert,
-      color: "from-red-400/20 to-purple-400/10",
+      color: "from-red-400/30 to-purple-400/30",
       iconColor: "#FCA5A5",
     },
 
@@ -30,7 +35,7 @@ const Features = () => {
         "Instead of simply reporting an error, the system explains the vulnerable code in plain English and identifies the underlying cause.",
       tags: ["AI Analysis", "Explainability", "Root Cause"],
       icon: SearchCode,
-      color: "from-purple-400/20 to-blue-400/10",
+      color: "from-purple-400/30 to-blue-400/30",
       iconColor: "#C4B5FD",
     },
 
@@ -44,7 +49,7 @@ const Features = () => {
         "The RAG layer retrieves relevant information before the LLM generates its explanation, helping the system provide context-aware security insights.",
       tags: ["RAG", "LLM", "Knowledge Retrieval"],
       icon: BrainCircuit,
-      color: "from-blue-400/20 to-cyan-400/10",
+      color: "from-blue-400/30 to-cyan-400/30",
       iconColor: "#93C5FD",
     },
 
@@ -58,27 +63,25 @@ const Features = () => {
         "The system explains the recommended remediation approach so the developer remains in control of the final code changes.",
       tags: ["Remediation", "Developer Control", "Secure Coding"],
       icon: Wrench,
-      color: "from-emerald-400/20 to-purple-400/10",
+      color: "from-emerald-400/30 to-purple-400/30",
       iconColor: "#86EFAC",
     },
   ];
 
   return (
-    <section className="w-full py-28 px-6">
-
+    <section className="w-full py-28 px-6 bg-white text-gray-900">
       {/* ================= HEADER ================= */}
 
       <div className="flex flex-col items-center text-center gap-5 mb-16">
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="font-bold font-body text-5xl tracking-normal"
+          className="font-bold font-nova text-5xl tracking-normal text-gray-900"
         >
           Everything you need to{" "}
-          <span className="bg-gradient-to-r from-button via-purple-400 to-nav bg-clip-text text-transparent">
+          <span className="bg-black bg-clip-text text-transparent">
             secure your code
           </span>
         </motion.h1>
@@ -88,15 +91,13 @@ const Features = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-medium font-body text-lg text-gray-400 tracking-wide max-w-2xl"
+          className="font-medium font-nova text-lg text-gray-600 tracking-wide max-w-2xl"
         >
           An AI-powered security assistant that detects vulnerabilities,
           explains their root causes, and provides context-aware remediation
           guidance.
         </motion.p>
-
       </div>
-
 
       {/* ================= FEATURE CARDS ================= */}
 
@@ -112,31 +113,23 @@ const Features = () => {
           lg:h-[480px]
         "
       >
-
         {features.map((feature, index) => {
-
           const Icon = feature.icon;
           const isActive = activeFeature === index;
 
           return (
-
             <motion.div
               key={feature.number}
-
               onMouseEnter={() => setActiveFeature(index)}
-
               layout
-
               animate={{
                 flex: isActive ? 2.4 : 1,
                 opacity: isActive ? 1 : 0.55,
               }}
-
               transition={{
                 duration: 0.45,
                 ease: [0.22, 1, 0.36, 1],
               }}
-
               className={`
                 relative
                 overflow-hidden
@@ -149,11 +142,10 @@ const Features = () => {
                 ${
                   isActive
                     ? "border-purple-300/50 shadow-[0_0_40px_rgba(168,85,247,0.15)]"
-                    : "border-white/10"
+                    : "border-gray-200"
                 }
               `}
             >
-
               {/* Background glow */}
 
               <motion.div
@@ -174,15 +166,12 @@ const Features = () => {
                 "
               />
 
-
               {/* ================= CARD CONTENT ================= */}
 
               <div className="relative z-10 h-full p-7 flex flex-col">
-
                 {/* Number */}
 
                 <div className="flex items-center justify-between mb-8">
-
                   <span
                     className={`
                       text-sm
@@ -191,8 +180,8 @@ const Features = () => {
                       duration-300
                       ${
                         isActive
-                          ? "text-purple-300"
-                          : "text-gray-600"
+                          ? "text-purple-600"
+                          : "text-gray-500"
                       }
                     `}
                   >
@@ -212,9 +201,9 @@ const Features = () => {
                       flex
                       items-center
                       justify-center
-                      bg-white/5
+                      bg-white/70
                       border
-                      border-white/10
+                      border-gray-200
                     "
                   >
                     <Icon
@@ -222,9 +211,7 @@ const Features = () => {
                       color={feature.iconColor}
                     />
                   </motion.div>
-
                 </div>
-
 
                 {/* Title */}
 
@@ -233,64 +220,52 @@ const Features = () => {
                   className="
                     text-2xl
                     font-semibold
-                    font-body
-                    text-white
+                    font-nova
+                    text-gray-900
                     mb-4
                   "
                 >
                   {feature.title}
                 </motion.h2>
 
-
                 {/* Description */}
 
-                <p className="text-sm text-gray-400 leading-6 font-body">
+                <p className="text-sm text-gray-900 leading-6 font-nova">
                   {feature.description}
                 </p>
-
 
                 {/* ================= EXPANDED CONTENT ================= */}
 
                 <AnimatePresence mode="wait">
-
                   {isActive && (
-
                     <motion.div
                       initial={{
                         opacity: 0,
                         y: 15,
                       }}
-
                       animate={{
                         opacity: 1,
                         y: 0,
                       }}
-
                       exit={{
                         opacity: 0,
                         y: 10,
                       }}
-
                       transition={{
                         duration: 0.3,
                       }}
-
                       className="mt-7"
                     >
+                      <div className="h-px w-full bg-gray-200 mb-6" />
 
-                      <div className="h-px w-full bg-white/10 mb-6" />
-
-                      <p className="text-sm text-gray-300 leading-6 font-body">
+                      <p className="text-sm text-gray-900 leading-6 font-nova">
                         {feature.details}
                       </p>
-
 
                       {/* Tags */}
 
                       <div className="flex flex-wrap gap-2 mt-6">
-
                         {feature.tags.map((tag) => (
-
                           <span
                             key={tag}
                             className="
@@ -298,30 +273,24 @@ const Features = () => {
                               py-1.5
                               rounded-full
                               text-xs
-                              text-gray-300
-                              bg-white/5
+                              font-nova
+                              text-gray-900
+                              bg-white/70
                               border
-                              border-white/10
+                              border-gray-200
                             "
                           >
                             {tag}
                           </span>
-
                         ))}
-
                       </div>
-
                     </motion.div>
-
                   )}
-
                 </AnimatePresence>
-
 
                 {/* ================= BOTTOM LABEL ================= */}
 
                 <div className="mt-auto pt-8">
-
                   <motion.div
                     animate={{
                       width: isActive ? "100%" : "25%",
@@ -337,18 +306,12 @@ const Features = () => {
                       to-sky-300
                     "
                   />
-
                 </div>
-
               </div>
-
             </motion.div>
-
           );
         })}
-
       </div>
-
 
       {/* ================= NOVELTY STATEMENT ================= */}
 
@@ -364,23 +327,20 @@ const Features = () => {
           text-center
         "
       >
-
-        <p className="text-sm font-body uppercase tracking-[0.3em] text-purple-300 mb-4">
+        <p className="text-sm font-nova uppercase tracking-[0.3em] text-black mb-4">
           What makes it different
         </p>
 
-        <p className="text-lg text-gray-400 font-body leading-8">
-          Unlike conventional static analyzers that only report vulnerabilities,
-          our system combines{" "}
-          <span className="text-white">
+        <p className="text-lg text-gray-600 font-nova leading-8">
+          Unlike conventional static analyzers that only report
+          vulnerabilities, our system combines{" "}
+          <span className="text-gray-900 font-semibold">
             static analysis, LLM-based reasoning, and RAG
           </span>{" "}
           to explain the problem, identify its root cause, and provide
           actionable remediation guidance.
         </p>
-
       </motion.div>
-
     </section>
   );
 };

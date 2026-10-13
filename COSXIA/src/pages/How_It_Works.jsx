@@ -72,14 +72,13 @@ const How_It_Works = () => {
   ];
 
   return (
-    <section className="relative flex flex-col items-center w-full py-24 overflow-hidden">
+    <section className="relative flex flex-col items-center w-full py-24 overflow-hidden bg-white text-gray-900">
 
       {/* =====================================================
           BACKGROUND GLOW
       ===================================================== */}
 
       <div className="absolute inset-0 pointer-events-none">
-
         <div
           className="
             absolute
@@ -89,13 +88,11 @@ const How_It_Works = () => {
             w-[700px]
             h-[300px]
             rounded-full
-            bg-purple-600/10
+            bg-purple-600/8
             blur-[120px]
           "
         />
-
       </div>
-
 
       {/* =====================================================
           SECTION HEADING
@@ -119,14 +116,14 @@ const How_It_Works = () => {
         }}
         className="relative z-10 flex flex-col items-center gap-5"
       >
-
         <h1
           className="
             font-bold
-            font-body
+            font-nova
             text-5xl
             tracking-normal
             text-center
+            text-gray-900
           "
         >
           From vulnerable code to{" "}
@@ -134,7 +131,7 @@ const How_It_Works = () => {
             className="
               bg-gradient-to-r
               from-button
-              via-purple-400
+              via-purple-500
               to-nav
               bg-clip-text
               text-transparent
@@ -144,13 +141,12 @@ const How_It_Works = () => {
           </span>
         </h1>
 
-
         <p
           className="
             font-medium
-            font-body
+            font-nova
             text-lg
-            text-gray-400
+            text-gray-600
             text-center
             max-w-2xl
           "
@@ -159,9 +155,7 @@ const How_It_Works = () => {
           and a tuned language model to understand and explain code
           security issues.
         </p>
-
       </motion.div>
-
 
       {/* =====================================================
           WORKFLOW
@@ -180,7 +174,7 @@ const How_It_Works = () => {
             h-[2px]
             bg-gradient-to-r
             from-transparent
-            via-purple-400/40
+            via-purple-400/50
             to-transparent
           "
         />
@@ -197,13 +191,11 @@ const How_It_Works = () => {
           "
         />
 
-
         {/* Steps */}
 
         <div className="relative flex flex-row items-start justify-between">
 
           {steps.map((step, index) => {
-
             const Icon = step.icon;
 
             return (
@@ -250,20 +242,14 @@ const How_It_Works = () => {
                     flex
                     items-center
                     justify-center
-
                     w-[84px]
                     h-[84px]
-
                     rounded-2xl
-
-                    bg-[#111018]
+                    bg-white
                     backdrop-blur-xl
-
                     border
-                    border-purple-300/20
-
-                    shadow-[0_0_35px_rgba(168,85,247,0.12)]
-
+                    border-purple-200
+                    shadow-[0_10px_35px_rgba(139,92,246,0.12)]
                     cursor-pointer
                   "
                 >
@@ -275,7 +261,7 @@ const How_It_Works = () => {
                       absolute
                       inset-0
                       rounded-2xl
-                      bg-purple-500/10
+                      bg-purple-500/8
                       blur-xl
                     "
                   />
@@ -285,12 +271,10 @@ const How_It_Works = () => {
                     strokeWidth={1.5}
                     className="
                       relative
-                      text-[#DFC0FE]
+                      text-purple-600
                     "
                   />
-
                 </motion.div>
-
 
                 {/* STEP NUMBER */}
 
@@ -300,20 +284,15 @@ const How_It_Works = () => {
                     top-[-10px]
                     right-[42px]
                     z-30
-
                     flex
                     items-center
                     justify-center
-
                     w-6
                     h-6
-
                     rounded-full
-
                     bg-gradient-to-r
                     from-purple-500
                     to-button
-
                     text-[11px]
                     font-bold
                     text-white
@@ -321,7 +300,6 @@ const How_It_Works = () => {
                 >
                   {index + 1}
                 </div>
-
 
                 {/* TITLE */}
 
@@ -331,14 +309,13 @@ const How_It_Works = () => {
                     text-lg
                     tracking-wide
                     font-semibold
-                    font-body
-                    text-white
+                    font-nova
+                    text-gray-900
                     text-center
                   "
                 >
                   {step.title}
                 </h2>
-
 
                 {/* DESCRIPTION */}
 
@@ -348,21 +325,19 @@ const How_It_Works = () => {
                     text-sm
                     leading-6
                     font-medium
-                    text-gray-400
+                    font-nova
+                    text-gray-600
                     text-center
                   "
                 >
                   {step.description}
                 </p>
-
               </motion.div>
             );
           })}
 
         </div>
-
       </div>
-
 
       {/* =====================================================
           TECHNICAL PIPELINE
@@ -388,57 +363,49 @@ const How_It_Works = () => {
           relative
           z-10
           mt-20
-
           flex
           items-center
           justify-center
           gap-3
-
           px-8
           py-5
-
           rounded-2xl
-
-          bg-white/[0.03]
+          bg-white
           backdrop-blur-xl
-
           border
-          border-white/10
-
-          shadow-[0_0_40px_rgba(139,92,246,0.08)]
+          border-gray-200
+          shadow-[0_15px_40px_rgba(139,92,246,0.08)]
         "
       >
 
-        <span className="text-sm text-gray-400">
+        <span className="text-sm font-nova text-gray-600">
           Security Pipeline
         </span>
 
-        <span className="text-purple-400">→</span>
+        <span className="text-purple-500">→</span>
 
-        <span className="text-sm text-gray-200">
+        <span className="text-sm font-nova font-medium text-gray-800">
           Semgrep CE
         </span>
 
-        <span className="text-purple-400">→</span>
+        <span className="text-purple-500">→</span>
 
-        <span className="text-sm text-gray-200">
+        <span className="text-sm font-nova font-medium text-gray-800">
           RAG
         </span>
 
-        <span className="text-purple-400">→</span>
+        <span className="text-purple-500">→</span>
 
-        <span className="text-sm text-gray-200">
+        <span className="text-sm font-nova font-medium text-gray-800">
           LoRA-Tuned LLM
         </span>
 
-        <span className="text-purple-400">→</span>
+        <span className="text-purple-500">→</span>
 
-        <span className="text-sm text-gray-200">
+        <span className="text-sm font-nova font-medium text-gray-800">
           Report
         </span>
-
       </motion.div>
-
 
       {/* =====================================================
           NOVA IMAGE / PROJECT PREVIEW
@@ -468,21 +435,15 @@ const How_It_Works = () => {
           relative
           z-10
           mt-20
-
           w-[1000px]
           max-w-[90vw]
-
           p-5
-
           rounded-3xl
-
-          bg-white/[0.035]
+          bg-white
           backdrop-blur-xl
-
           border
-          border-purple-300/10
-
-          shadow-[0_0_70px_rgba(139,92,246,0.12)]
+          border-purple-200/60
+          shadow-[0_20px_70px_rgba(139,92,246,0.12)]
         "
       >
 
@@ -499,7 +460,6 @@ const How_It_Works = () => {
           "
         />
 
-
         {/* Image */}
 
         <div className="relative overflow-hidden rounded-2xl">
@@ -510,17 +470,12 @@ const How_It_Works = () => {
             className="
               w-full
               h-auto
-
               border
-              border-gray-700/60
-
+              border-gray-200
               rounded-2xl
-
               shadow-2xl
-
               transition-transform
               duration-700
-
               hover:scale-[1.015]
             "
           />
@@ -533,7 +488,7 @@ const How_It_Works = () => {
               inset-0
               rounded-2xl
               bg-gradient-to-t
-              from-black/20
+              from-black/10
               via-transparent
               to-transparent
               pointer-events-none
@@ -541,9 +496,7 @@ const How_It_Works = () => {
           />
 
         </div>
-
       </motion.div>
-
 
       {/* =====================================================
           FINAL EXPLANATION
@@ -573,26 +526,31 @@ const How_It_Works = () => {
           text-center
         "
       >
-
-        <p className="text-gray-400 font-body leading-7">
+        <p className="text-gray-600 font-nova leading-7">
 
           NOVA first detects security vulnerabilities using{" "}
-          <span className="text-purple-300 font-semibold">
+
+          <span className="text-purple-600 font-semibold font-nova">
             Semgrep CE
           </span>
+
           . Relevant security knowledge is then retrieved using{" "}
-          <span className="text-purple-300 font-semibold">
+
+          <span className="text-purple-600 font-semibold font-nova">
             RAG
           </span>
+
           , while the{" "}
-          <span className="text-purple-300 font-semibold">
+
+          <span className="text-purple-600 font-semibold font-nova">
             LoRA-tuned LLM
           </span>
-          {" "}analyzes the vulnerability, explains its root cause,
+
+          {" "}
+          analyzes the vulnerability, explains its root cause,
           assesses its impact, and provides practical remediation guidance.
 
         </p>
-
       </motion.div>
 
     </section>

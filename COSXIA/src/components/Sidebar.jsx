@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
-import Logo from "../icons/Logo";
+import Logo from "../components/header/Logo";
 
 import {
   IoDocumentTextOutline,
