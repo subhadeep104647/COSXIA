@@ -269,8 +269,8 @@ const NewChat = () => {
       className="
         min-h-screen
         w-full
-        bg-[#050507]
-        text-white
+        bg-white
+        text-gray-900
         overflow-x-hidden
         md:ml-64
         md:w-[calc(100%-16rem)]
@@ -287,7 +287,7 @@ const NewChat = () => {
             left-[30%]
             w-[500px]
             h-[500px]
-            bg-purple-600/10
+            bg-purple-500/[0.08]
             blur-[150px]
             rounded-full
           "
@@ -300,7 +300,7 @@ const NewChat = () => {
             right-[10%]
             w-[500px]
             h-[500px]
-            bg-blue-600/10
+            bg-cyan-500/[0.06]
             blur-[150px]
             rounded-full
           "
@@ -405,10 +405,10 @@ const NewChat = () => {
                     text-purple-300
                   `
                   : `
-                    bg-white/[0.03]
-                    border-white/[0.08]
+                    bg-gray-50
+                    border-gray-200
                     text-gray-500
-                    hover:text-gray-300
+                    hover:text-gray-500
                   `
               }
             `}
@@ -443,10 +443,10 @@ const NewChat = () => {
                     text-purple-300
                   `
                   : `
-                    bg-white/[0.03]
-                    border-white/[0.08]
+                    bg-gray-50
+                    border-gray-200
                     text-gray-500
-                    hover:text-gray-300
+                    hover:text-gray-500
                   `
               }
             `}
@@ -485,8 +485,8 @@ const NewChat = () => {
               min-w-0
               rounded-2xl
               border
-              border-white/[0.08]
-              bg-white/[0.025]
+              border-gray-200
+              bg-white
               backdrop-blur-xl
               overflow-hidden
             "
@@ -501,7 +501,7 @@ const NewChat = () => {
                 items-center
                 justify-between
                 border-b
-                border-white/[0.07]
+                border-gray-200
               "
             >
               <div className="flex items-center gap-2">
@@ -518,14 +518,14 @@ const NewChat = () => {
                   />
                 )}
 
-                <span className="text-xs text-gray-300">
+                <span className="text-xs text-gray-500">
                   {mode === "manual"
                     ? "Code Input"
                     : "Import Git Repository"}
                 </span>
               </div>
 
-              <span className="text-[10px] text-gray-600">
+              <span className="text-[10px] text-gray-400">
                 {mode === "manual"
                   ? "Manual Analysis"
                   : "GitHub"}
@@ -559,17 +559,17 @@ function login(username, password) {
                     w-full
                     min-h-[430px]
                     resize-none
-                    bg-[#07070a]
+                    bg-gray-50
                     border
-                    border-white/[0.06]
+                    border-gray-200
                     rounded-xl
                     p-4
                     text-sm
-                    text-gray-300
+                    text-gray-500
                     font-mono
                     leading-6
                     outline-none
-                    placeholder:text-gray-700
+                    placeholder:text-gray-500
                     focus:border-purple-500/30
                     transition
                   "
@@ -597,11 +597,11 @@ function login(username, password) {
                       py-2
                       rounded-lg
                       border
-                      border-white/[0.07]
-                      bg-white/[0.025]
+                      border-gray-200
+                      bg-white
                       text-xs
                       text-gray-500
-                      hover:text-gray-300
+                      hover:text-gray-500
                       hover:bg-white/[0.05]
                       transition
                     "
@@ -662,7 +662,7 @@ function login(username, password) {
                       bg-gradient-to-r
                       from-purple-600
                       to-blue-600
-                      text-white
+                      text-gray-900
                       text-xs
                       font-medium
                       shadow-[0_0_25px_rgba(139,92,246,0.2)]
@@ -718,7 +718,7 @@ function login(username, password) {
                         gap-2
                         text-xs
                         text-gray-500
-                        hover:text-white
+                        hover:text-gray-900
                         transition
                         mb-5
                       "
@@ -780,7 +780,7 @@ function login(username, password) {
                             <p
                               className="
                                 text-sm
-                                text-gray-200
+                                text-gray-800
                                 truncate
                               "
                             >
@@ -790,7 +790,7 @@ function login(username, password) {
                             <p
                               className="
                                 text-[11px]
-                                text-gray-600
+                                text-gray-400
                                 truncate
                                 mt-1
                               "
@@ -843,14 +843,14 @@ function login(username, password) {
                         className="
                           appearance-none
                           w-full
-                          bg-[#07070a]
+                          bg-gray-50
                           border
-                          border-white/[0.07]
+                          border-gray-200
                           rounded-xl
                           px-4
                           py-3
                           text-sm
-                          text-gray-300
+                          text-gray-500
                           outline-none
                           focus:border-purple-500/30
                         "
@@ -893,7 +893,7 @@ function login(username, password) {
                           right-4
                           top-1/2
                           -translate-y-1/2
-                          text-gray-600
+                          text-gray-400
                           pointer-events-none
                         "
                       />
@@ -904,8 +904,8 @@ function login(username, password) {
                       className="
                         rounded-xl
                         border
-                        border-white/[0.06]
-                        bg-white/[0.02]
+                        border-gray-200
+                        bg-gray-50
                         p-4
                         mb-5
                       "
@@ -925,7 +925,7 @@ function login(username, password) {
                         )}
 
                         <div>
-                          <p className="text-xs text-gray-300">
+                          <p className="text-xs text-gray-500">
                             {selectedRepo.private
                               ? "Private repository"
                               : "Public repository"}
@@ -934,7 +934,7 @@ function login(username, password) {
                           <p
                             className="
                               text-[11px]
-                              text-gray-600
+                              text-gray-400
                               mt-1
                               leading-5
                             "
@@ -1028,7 +1028,7 @@ function login(username, password) {
                             rounded-xl
                             bg-white/[0.05]
                             border
-                            border-white/[0.08]
+                            border-gray-200
                             flex
                             items-center
                             justify-center
@@ -1036,12 +1036,12 @@ function login(username, password) {
                         >
                           <Github
                             size={19}
-                            className="text-white"
+                            className="text-gray-900"
                           />
                         </div>
 
                         <div>
-                          <p className="text-sm text-gray-200">
+                          <p className="text-sm text-gray-800">
                             Import from GitHub
                           </p>
 
@@ -1074,10 +1074,10 @@ function login(username, password) {
                           items-center
                           justify-center
                           border
-                          border-white/[0.07]
-                          bg-white/[0.02]
+                          border-gray-200
+                          bg-gray-50
                           text-gray-500
-                          hover:text-white
+                          hover:text-gray-900
                           hover:bg-white/[0.06]
                           transition
                         "
@@ -1103,7 +1103,7 @@ function login(username, password) {
                           left-3
                           top-1/2
                           -translate-y-1/2
-                          text-gray-600
+                          text-gray-400
                         "
                       />
 
@@ -1117,17 +1117,17 @@ function login(username, password) {
                         placeholder="Search repositories..."
                         className="
                           w-full
-                          bg-[#07070a]
+                          bg-gray-50
                           border
-                          border-white/[0.07]
+                          border-gray-200
                           rounded-xl
                           py-3
                           pl-10
                           pr-4
                           text-sm
-                          text-gray-300
+                          text-gray-500
                           outline-none
-                          placeholder:text-gray-700
+                          placeholder:text-gray-500
                           focus:border-purple-500/30
                         "
                       />
@@ -1182,8 +1182,8 @@ function login(username, password) {
                                 p-4
                                 rounded-xl
                                 border
-                                border-white/[0.07]
-                                bg-white/[0.02]
+                                border-gray-200
+                                bg-gray-50
                                 hover:bg-purple-500/[0.06]
                                 hover:border-purple-500/20
                                 transition-all
@@ -1213,7 +1213,7 @@ function login(username, password) {
                                       rounded-lg
                                       bg-white/[0.04]
                                       border
-                                      border-white/[0.06]
+                                      border-gray-200
                                       flex
                                       items-center
                                       justify-center
@@ -1236,7 +1236,7 @@ function login(username, password) {
                                       <p
                                         className="
                                           text-sm
-                                          text-gray-200
+                                          text-gray-800
                                           truncate
                                         "
                                       >
@@ -1246,7 +1246,7 @@ function login(username, password) {
                                       {repo.private && (
                                         <Lock
                                           size={11}
-                                          className="text-gray-600 shrink-0"
+                                          className="text-gray-400 shrink-0"
                                         />
                                       )}
                                     </div>
@@ -1254,7 +1254,7 @@ function login(username, password) {
                                     <p
                                       className="
                                         text-[11px]
-                                        text-gray-600
+                                        text-gray-400
                                         mt-1
                                         truncate
                                       "
@@ -1266,7 +1266,7 @@ function login(username, password) {
                                       <p
                                         className="
                                           text-[10px]
-                                          text-gray-700
+                                          text-gray-500
                                           mt-1
                                           truncate
                                         "
@@ -1309,7 +1309,7 @@ function login(username, password) {
                           <FolderGit2
                             size={24}
                             className="
-                              text-gray-700
+                              text-gray-500
                               mb-3
                             "
                           />
@@ -1321,7 +1321,7 @@ function login(username, password) {
                           <p
                             className="
                               text-[10px]
-                              text-gray-700
+                              text-gray-500
                               mt-1
                             "
                           >
@@ -1352,8 +1352,8 @@ function login(username, password) {
               min-w-0
               rounded-2xl
               border
-              border-white/[0.08]
-              bg-white/[0.025]
+              border-gray-200
+              bg-white
               backdrop-blur-xl
               overflow-hidden
               min-h-[500px]
@@ -1369,7 +1369,7 @@ function login(username, password) {
                 items-center
                 justify-between
                 border-b
-                border-white/[0.07]
+                border-gray-200
               "
             >
               <div className="flex items-center gap-2">
@@ -1379,7 +1379,7 @@ function login(username, password) {
                   className="text-purple-400"
                 />
 
-                <span className="text-xs text-gray-300">
+                <span className="text-xs text-gray-500">
                   Security Analysis
                 </span>
               </div>
@@ -1473,14 +1473,14 @@ function login(username, password) {
                   />
                 </div>
 
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-500">
                   NOVA is analyzing your code
                 </p>
 
                 <p
                   className="
                     text-xs
-                    text-gray-600
+                    text-gray-400
                     mt-2
                     max-w-xs
                     leading-5
@@ -1529,14 +1529,14 @@ function login(username, password) {
                     />
                   </div>
 
-                  <h3 className="text-sm font-medium text-gray-300">
+                  <h3 className="text-sm font-medium text-gray-500">
                     Ready to Analyze
                   </h3>
 
                   <p
                     className="
                       text-xs
-                      text-gray-600
+                      text-gray-400
                       mt-2
                       max-w-xs
                       leading-5
@@ -1560,8 +1560,8 @@ function login(username, password) {
                   className="
                     rounded-xl
                     border
-                    border-white/[0.07]
-                    bg-white/[0.02]
+                    border-gray-200
+                    bg-gray-50
                     p-4
                   "
                 >
@@ -1622,7 +1622,7 @@ function login(username, password) {
                   <p
                     className="
                       text-sm
-                      text-gray-300
+                      text-gray-500
                       leading-6
                     "
                   >
@@ -1642,8 +1642,8 @@ function login(username, password) {
                         className="
                           rounded-xl
                           border
-                          border-white/[0.07]
-                          bg-white/[0.02]
+                          border-gray-200
+                          bg-gray-50
                           p-4
                         "
                       >
@@ -1656,7 +1656,7 @@ function login(username, password) {
                           "
                         >
                           <div>
-                            <h4 className="text-sm text-gray-200">
+                            <h4 className="text-sm text-gray-800">
                               {item.title ||
                                 "Security Vulnerability"}
                             </h4>
@@ -1665,7 +1665,7 @@ function login(username, password) {
                               <p
                                 className="
                                   text-[10px]
-                                  text-gray-600
+                                  text-gray-400
                                   mt-1
                                 "
                               >
@@ -1787,8 +1787,8 @@ function login(username, password) {
                     className="
                       rounded-xl
                       border
-                      border-white/[0.07]
-                      bg-[#07070a]
+                      border-gray-200
+                      bg-gray-50
                       p-4
                     "
                   >
@@ -1823,8 +1823,8 @@ function login(username, password) {
                     className="
                       rounded-xl
                       border
-                      border-white/[0.07]
-                      bg-white/[0.02]
+                      border-gray-200
+                      bg-gray-50
                       p-4
                     "
                   >

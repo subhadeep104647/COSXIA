@@ -1,30 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  ShieldCheck,
-  ShieldAlert,
-  AlertTriangle,
-  AlertCircle,
-  CheckCircle2,
-  GitBranch,
-  Github,
-  FileCode2,
-  Bug,
-  BrainCircuit,
-  RefreshCw,
-  ChevronRight,
-  Activity,
-  Lock,
-  Clock3,
-  Search,
-  Sparkles,
-} from "lucide-react";
-
-
-// =====================================================
-// DEMO DATA
-// Used only when backend analysis data is not available.
-// Replace this with your real backend response.
-// =====================================================
+import { ShieldCheck, ShieldAlert, AlertTriangle, AlertCircle, CheckCircle2, GitBranch, Github, FileCode2, Bug, BrainCircuit, RefreshCw, ChevronRight, Activity, Lock, Clock3, Search, Sparkles,} from "lucide-react";
 
 const demoAnalysis = {
   repository: {
@@ -33,15 +8,10 @@ const demoAnalysis = {
     branch: "main",
   },
 
-  summary:
-    "The repository contains several security-sensitive patterns that should be reviewed before production deployment.",
-
+  summary: "The repository contains several security-sensitive patterns that should be reviewed before production deployment.",
   securityScore: 72,
-
   status: "Completed",
-
   analyzedFiles: 28,
-
   analysisTime: "4.8s",
 
   vulnerabilities: [
@@ -51,10 +21,8 @@ const demoAnalysis = {
       severity: "Critical",
       file: "auth/login.js",
       line: 18,
-      description:
-        "User-controlled input is directly concatenated into a SQL query.",
-      recommendation:
-        "Use parameterized queries or prepared statements instead of string concatenation.",
+      description: "User-controlled input is directly concatenated into a SQL query.",
+      recommendation: "Use parameterized queries or prepared statements instead of string concatenation.",
       category: "Injection",
     },
 
@@ -64,10 +32,8 @@ const demoAnalysis = {
       severity: "High",
       file: "config/database.js",
       line: 11,
-      description:
-        "A database credential appears to be stored directly inside the source code.",
-      recommendation:
-        "Move credentials into environment variables or a secure secrets manager.",
+      description:"A database credential appears to be stored directly inside the source code.",
+      recommendation:"Move credentials into environment variables or a secure secrets manager.",
       category: "Secrets",
     },
 
@@ -77,10 +43,8 @@ const demoAnalysis = {
       severity: "High",
       file: "components/Profile.jsx",
       line: 42,
-      description:
-        "User-controlled content may be rendered without sufficient sanitization.",
-      recommendation:
-        "Sanitize untrusted HTML and avoid unsafe DOM rendering APIs.",
+      description:"User-controlled content may be rendered without sufficient sanitization.",
+      recommendation:"Sanitize untrusted HTML and avoid unsafe DOM rendering APIs.",
       category: "XSS",
     },
 
@@ -90,10 +54,8 @@ const demoAnalysis = {
       severity: "Medium",
       file: "utils/validation.js",
       line: 27,
-      description:
-        "Password validation does not enforce sufficient complexity requirements.",
-      recommendation:
-        "Implement stronger password requirements and enforce server-side validation.",
+      description:"Password validation does not enforce sufficient complexity requirements.",
+      recommendation:"Implement stronger password requirements and enforce server-side validation.",
       category: "Authentication",
     },
 
@@ -103,26 +65,19 @@ const demoAnalysis = {
       severity: "Low",
       file: "server/index.js",
       line: 64,
-      description:
-        "Recommended HTTP security headers are not configured.",
-      recommendation:
-        "Configure appropriate Content-Security-Policy and other security headers.",
+      description:"Recommended HTTP security headers are not configured.",
+      recommendation:"Configure appropriate Content-Security-Policy and other security headers.",
       category: "Configuration",
     },
   ],
 
   llmAnalysis: {
-    explanation:
-      "The highest-risk issue is the SQL injection vulnerability because attacker-controlled input reaches the database query without parameterization. The hardcoded credential is also important because source-code exposure could compromise the database.",
-    priority:
-      "Fix the Critical SQL Injection issue first, followed by the hardcoded secret and XSS vulnerability.",
+    explanation:"The highest-risk issue is the SQL injection vulnerability because attacker-controlled input reaches the database query without parameterization. The hardcoded credential is also important because source-code exposure could compromise the database.",
+    priority:"Fix the Critical SQL Injection issue first, followed by the hardcoded secret and XSS vulnerability.",
   },
 };
 
-
-// =====================================================
 // HELPERS
-// =====================================================
 
 const severityConfig = {
   Critical: {
@@ -154,7 +109,6 @@ const severityConfig = {
   },
 };
 
-
 const SeverityIcon = ({ severity }) => {
   if (severity === "Critical") {
     return <ShieldAlert size={17} />;
@@ -171,20 +125,14 @@ const SeverityIcon = ({ severity }) => {
   return <Activity size={17} />;
 };
 
-
-// =====================================================
 // ANALYSIS PAGE
-// =====================================================
 
 const Analysis = () => {
 
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-  // =====================================================
   // LOAD ANALYSIS
-  // =====================================================
 
   useEffect(() => {
 
@@ -346,10 +294,11 @@ const Analysis = () => {
         className="
           min-h-screen
           w-full
+          bg-white
           px-5
           md:px-8
           py-8
-          text-white
+          text-black
         "
       >
 
@@ -361,7 +310,7 @@ const Analysis = () => {
               h-8
               w-64
               rounded-lg
-              bg-white/[0.06]
+              bg-gray-100
             "
           />
 
@@ -373,7 +322,7 @@ const Analysis = () => {
               w-96
               max-w-full
               rounded
-              bg-white/[0.04]
+              bg-white
             "
           />
 
@@ -394,7 +343,7 @@ const Analysis = () => {
                 className="
                   h-28
                   rounded-2xl
-                  bg-white/[0.04]
+                  bg-white
                   animate-pulse
                 "
               />
@@ -421,10 +370,11 @@ const Analysis = () => {
       className="
         min-h-screen
         w-full
+        bg-white
         px-5
         md:px-8
         py-7
-        text-white
+        text-black
         relative
       "
     >
@@ -440,8 +390,8 @@ const Analysis = () => {
           -translate-x-1/2
           w-[600px]
           h-[300px]
-          bg-purple-600/[0.08]
-          blur-[120px]
+          bg-gradient-to-r from-purple-200/40 via-blue-100/40 to-cyan-100/40
+          blur-[100px]
           rounded-full
         "
       />
@@ -490,9 +440,9 @@ const Analysis = () => {
                   flex
                   items-center
                   justify-center
-                  bg-purple-500/10
+                  bg-purple-50
                   border
-                  border-purple-400/20
+                  border-purple-100
                   text-purple-400
                 "
               >
@@ -543,16 +493,16 @@ const Analysis = () => {
               px-4
               py-3
               rounded-2xl
-              bg-white/[0.035]
+              bg-white
               backdrop-blur-2xl
               border
-              border-white/[0.07]
+              border-gray-200
             "
           >
 
             <Github
               size={20}
-              className="text-gray-300"
+              className="text-gray-700"
             />
 
             <div>
@@ -561,7 +511,7 @@ const Analysis = () => {
                 className="
                   text-sm
                   font-medium
-                  text-white
+                  text-black
                 "
               >
                 {analysis?.repository?.fullName ||
@@ -639,10 +589,10 @@ const Analysis = () => {
               px-3
               py-2
               rounded-xl
-              bg-white/[0.035]
+              bg-white
               border
-              border-white/[0.06]
-              text-gray-400
+              border-gray-200
+              text-gray-600
               text-xs
             "
           >
@@ -664,10 +614,10 @@ const Analysis = () => {
               px-3
               py-2
               rounded-xl
-              bg-white/[0.035]
+              bg-white
               border
-              border-white/[0.06]
-              text-gray-400
+              border-gray-200
+              text-gray-600
               text-xs
             "
           >
@@ -689,13 +639,13 @@ const Analysis = () => {
               px-3
               py-2
               rounded-xl
-              bg-white/[0.035]
+              bg-white
               border
-              border-white/[0.06]
-              text-gray-400
+              border-gray-200
+              text-gray-600
               text-xs
-              hover:text-white
-              hover:bg-white/[0.07]
+              hover:text-black
+              hover:bg-gray-200
               transition
             "
           >
@@ -730,10 +680,11 @@ const Analysis = () => {
           <div
             className="
               rounded-2xl
-              bg-white/[0.035]
+              bg-white
               backdrop-blur-2xl
               border
-              border-white/[0.07]
+              border-gray-200
+              shadow-[0_8px_30px_rgba(15,23,42,0.05)]
               p-5
             "
           >
@@ -749,7 +700,7 @@ const Analysis = () => {
               <span
                 className="
                   text-sm
-                  text-gray-400
+                  text-gray-600
                 "
               >
                 Security Score
@@ -799,7 +750,7 @@ const Analysis = () => {
                 mt-4
                 h-1.5
                 rounded-full
-                bg-white/[0.06]
+                bg-gray-100
                 overflow-hidden
               "
             >
@@ -845,10 +796,11 @@ const Analysis = () => {
           <div
             className="
               rounded-2xl
-              bg-white/[0.035]
+              bg-white
               backdrop-blur-2xl
               border
-              border-white/[0.07]
+              border-gray-200
+              shadow-[0_8px_30px_rgba(15,23,42,0.05)]
               p-5
             "
           >
@@ -864,7 +816,7 @@ const Analysis = () => {
               <span
                 className="
                   text-sm
-                  text-gray-400
+                  text-gray-600
                 "
               >
                 Total Findings
@@ -923,10 +875,11 @@ const Analysis = () => {
           <div
             className="
               rounded-2xl
-              bg-white/[0.035]
+              bg-white
               backdrop-blur-2xl
               border
-              border-white/[0.07]
+              border-gray-200
+              shadow-[0_8px_30px_rgba(15,23,42,0.05)]
               p-5
             "
           >
@@ -1022,7 +975,7 @@ const Analysis = () => {
                         <span
                           className="
                             text-xs
-                            text-gray-400
+                            text-gray-600
                           "
                         >
                           {count}
@@ -1036,7 +989,7 @@ const Analysis = () => {
                           h-2
                           w-full
                           rounded-full
-                          bg-white/[0.05]
+                          bg-gray-100
                           overflow-hidden
                         "
                       >
@@ -1076,10 +1029,11 @@ const Analysis = () => {
           <div
             className="
               rounded-2xl
-              bg-white/[0.035]
+              bg-white
               backdrop-blur-2xl
               border
-              border-white/[0.07]
+              border-gray-200
+              shadow-[0_8px_30px_rgba(15,23,42,0.05)]
               p-5
             "
           >
@@ -1100,7 +1054,7 @@ const Analysis = () => {
                   flex
                   items-center
                   justify-center
-                  bg-purple-500/10
+                  bg-purple-50
                   text-purple-400
                 "
               >
@@ -1140,7 +1094,7 @@ const Analysis = () => {
                 mt-5
                 text-sm
                 leading-7
-                text-gray-400
+                text-gray-600
               "
             >
               {analysis?.summary ||
@@ -1153,9 +1107,9 @@ const Analysis = () => {
                 mt-5
                 p-4
                 rounded-xl
-                bg-purple-500/[0.06]
+                bg-purple-50
                 border
-                border-purple-500/[0.12]
+                border-purple-100
               "
             >
 
@@ -1182,7 +1136,7 @@ const Analysis = () => {
                   mt-2
                   text-xs
                   leading-6
-                  text-gray-400
+                  text-gray-600
                 "
               >
                 {analysis?.llmAnalysis?.priority ||
@@ -1270,12 +1224,13 @@ const Analysis = () => {
                     key={vulnerability.id}
                     className="
                       rounded-2xl
-                      bg-white/[0.035]
+                      bg-white
                       backdrop-blur-2xl
                       border
-                      border-white/[0.07]
+                      border-gray-200
+                      shadow-[0_8px_30px_rgba(15,23,42,0.05)]
                       p-5
-                      hover:bg-white/[0.055]
+                      hover:bg-gray-50
                       transition-all
                     "
                   >
@@ -1334,7 +1289,7 @@ const Analysis = () => {
                             className="
                               text-sm
                               font-semibold
-                              text-white
+                              text-black
                             "
                           >
                             {vulnerability.title}
@@ -1406,7 +1361,7 @@ const Analysis = () => {
                             mt-4
                             text-sm
                             leading-6
-                            text-gray-400
+                            text-gray-600
                           "
                         >
                           {vulnerability.description}
@@ -1419,7 +1374,7 @@ const Analysis = () => {
                           className="
                             mt-4
                             rounded-xl
-                            bg-black/20
+                            bg-gray-50
                             p-4
                           "
                         >
@@ -1428,7 +1383,7 @@ const Analysis = () => {
                             className="
                               text-xs
                               font-medium
-                              text-gray-300
+                              text-gray-700
                             "
                           >
                             Recommended Fix
@@ -1487,7 +1442,7 @@ const Analysis = () => {
             to-blue-500/[0.04]
             backdrop-blur-2xl
             border
-            border-purple-400/[0.12]
+            border-purple-100
             p-6
           "
         >
@@ -1508,7 +1463,7 @@ const Analysis = () => {
                 flex
                 items-center
                 justify-center
-                bg-purple-500/10
+                bg-purple-50
                 text-purple-400
               "
             >
@@ -1549,7 +1504,7 @@ const Analysis = () => {
               mt-5
               text-sm
               leading-7
-              text-gray-400
+              text-gray-600
             "
           >
             {analysis?.llmAnalysis?.explanation ||
@@ -1607,10 +1562,10 @@ const SeverityCard = ({
     <div
       className="
         rounded-2xl
-        bg-white/[0.035]
+        bg-white
         backdrop-blur-2xl
         border
-        border-white/[0.07]
+        border-gray-200
         p-5
       "
     >
@@ -1626,7 +1581,7 @@ const SeverityCard = ({
         <span
           className="
             text-sm
-            text-gray-400
+            text-gray-600
           "
         >
           {title}
