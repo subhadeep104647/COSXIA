@@ -294,6 +294,9 @@ const Analysis = () => {
         className="
           min-h-screen
           w-full
+          md:ml-[var(--nova-sidebar-width)]
+          md:w-[calc(100%-var(--nova-sidebar-width))]
+          transition-[margin-left,width] duration-300 ease-out
           bg-white
           px-5
           md:px-8
@@ -370,6 +373,9 @@ const Analysis = () => {
       className="
         min-h-screen
         w-full
+          md:ml-[var(--nova-sidebar-width)]
+          md:w-[calc(100%-var(--nova-sidebar-width))]
+          transition-[margin-left,width] duration-300 ease-out
         bg-white
         px-5
         md:px-8

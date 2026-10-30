@@ -391,7 +391,23 @@ const Notebook = () => {
   // =====================================================
 
   return (
-    <div className="min-h-screen w-full text-white bg-[#050509] relative overflow-hidden">
+    <div
+      className="nova-notebook-shell min-h-screen w-full text-gray-900 bg-white relative overflow-hidden"
+      style={{
+        marginLeft: "var(--nova-sidebar-width, 260px)",
+        width: "calc(100% - var(--nova-sidebar-width, 260px))",
+        transition: "margin-left 300ms ease, width 300ms ease",
+      }}
+    >
+      <style>{`
+        @media (max-width: 767px) {
+          .nova-notebook-shell {
+            margin-left: 0 !important;
+            width: 100% !important;
+          }
+        }
+      `}</style>
+
       {/* =================================================
           BACKGROUND GLOW
       ================================================= */}
@@ -427,7 +443,7 @@ const Notebook = () => {
               border-b
               border-white/[0.05]
 
-              bg-white/[0.015]
+              bg-white/90
               backdrop-blur-xl
             "
           >

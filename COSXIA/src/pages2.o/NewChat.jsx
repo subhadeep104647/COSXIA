@@ -272,8 +272,8 @@ const NewChat = () => {
         bg-white
         text-gray-900
         overflow-x-hidden
-        md:ml-64
-        md:w-[calc(100%-16rem)]
+        md:ml-[var(--nova-sidebar-width)]
+        md:w-[calc(100%-var(--nova-sidebar-width))]
       "
     >
       {/* =====================================
