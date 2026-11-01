@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ChevronDown,
-  ChevronRight,
-  FileText,
-  MoreHorizontal,
-  Trash2,
-  Pin,
-  Clock3,
-  Check,
-  Plus,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, FileText, MoreHorizontal, Trash2, Pin, Clock3, Check, Plus } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const defaultSections = [
@@ -21,15 +11,13 @@ const defaultSections = [
       {
         id: 101,
         title: "Welcome to NOVA Notebook",
-        content:
-          "Write your notes here...\n\nYou can keep project ideas, security findings, research notes, algorithms, and other important information inside NOVA.",
+        content:"Write your notes here...\n\nYou can keep project ideas, security findings, research notes, algorithms, and other important information inside NOVA.",
         updatedAt: "Just now",
       },
       {
         id: 102,
         title: "Project Ideas",
-        content:
-          "• AI Code Security Assistant\n• GitHub Repository Analyzer\n• Vulnerability Detection\n• Security Dashboard",
+        content:"• AI Code Security Assistant\n• GitHub Repository Analyzer\n• Vulnerability Detection\n• Security Dashboard",
         updatedAt: "Today",
       },
     ],
@@ -42,8 +30,7 @@ const defaultSections = [
       {
         id: 201,
         title: "Security Research",
-        content:
-          "Add your research notes here...",
+        content:"Add your research notes here...",
         updatedAt: "Today",
       },
     ],
@@ -56,8 +43,7 @@ const defaultSections = [
       {
         id: 301,
         title: "Arrays",
-        content:
-          "• Two Sum\n• Maximum Subarray\n• Rotate Array\n• Missing Number",
+        content:"• Two Sum\n• Maximum Subarray\n• Rotate Array\n• Missing Number",
         updatedAt: "Yesterday",
       },
     ],
@@ -67,9 +53,7 @@ const defaultSections = [
 const Notebook = () => {
   const location = useLocation();
 
-  // =====================================================
   // STATE
-  // =====================================================
 
   const [sections, setSections] = useState(() => {
     try {
@@ -116,9 +100,7 @@ const Notebook = () => {
       }
     });
 
-  // =====================================================
   // HANDLE SIDEBAR NAVIGATION
-  // =====================================================
 
   useEffect(() => {
     const sectionId =
@@ -158,9 +140,7 @@ const Notebook = () => {
     }
   }, [location.state]);
 
-  // =====================================================
   // SAVE NOTEBOOK
-  // =====================================================
 
   useEffect(() => {
     localStorage.setItem(
@@ -173,9 +153,7 @@ const Notebook = () => {
     );
   }, [sections]);
 
-  // =====================================================
   // ACTIVE SECTION
-  // =====================================================
 
   const activeSection =
     sections.find(
@@ -183,9 +161,7 @@ const Notebook = () => {
         section.id === activeSectionId
     );
 
-  // =====================================================
   // ACTIVE PAGE
-  // =====================================================
 
   const activePage =
     activeSection?.pages.find(
@@ -193,9 +169,7 @@ const Notebook = () => {
         page.id === activePageId
     );
 
-  // =====================================================
   // SELECT SECTION
-  // =====================================================
 
   const handleSectionChange = (
     section
@@ -227,9 +201,7 @@ const Notebook = () => {
     }
   };
 
-  // =====================================================
   // ADD SECTION
-  // =====================================================
 
   const addSection = () => {
     const newSection = {
@@ -260,9 +232,7 @@ const Notebook = () => {
     );
   };
 
-  // =====================================================
   // ADD PAGE
-  // =====================================================
 
   const addPage = () => {
     if (!activeSection) return;
@@ -299,9 +269,7 @@ const Notebook = () => {
     );
   };
 
-  // =====================================================
   // UPDATE PAGE
-  // =====================================================
 
   const updatePage = (
     field,
@@ -332,9 +300,7 @@ const Notebook = () => {
     );
   };
 
-  // =====================================================
-  // DELETE PAGE
-  // =====================================================
+ // DELETE PAGE
 
   const deletePage = () => {
     if (
@@ -386,9 +352,7 @@ const Notebook = () => {
     }
   };
 
-  // =====================================================
   // UI
-  // =====================================================
 
   return (
     <div
@@ -408,9 +372,7 @@ const Notebook = () => {
         }
       `}</style>
 
-      {/* =================================================
-          BACKGROUND GLOW
-      ================================================= */}
+      {/* BACKGROUND GLOW */}
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-200px] left-[20%] w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[150px]" />
@@ -418,50 +380,16 @@ const Notebook = () => {
         <div className="absolute bottom-[-200px] right-[10%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[150px]" />
       </div>
 
-      {/* =================================================
-          MAIN NOTEBOOK EDITOR
-
-          No separate Notebook sidebar here.
-          Main NOVA Sidebar handles sections/pages.
-      ================================================= */}
+      {/* MAIN NOTEBOOK EDITOR */}
 
       <div className="relative z-10 min-h-screen flex">
         <main className="flex-1 min-w-0 flex flex-col">
-          {/* =================================================
-              EDITOR HEADER
-          ================================================= */}
 
-          <header
-            className="
-              h-[64px]
-              shrink-0
-              px-6
-              flex
-              items-center
-              justify-between
+          {/* EDITOR HEADER */}
 
-              border-b
-              border-white/[0.05]
-
-              bg-white/90
-              backdrop-blur-xl
-            "
-          >
+          <header className=" h-[64px] shrink-0 px-6 flex items-center justify-between border-b border-white/[0.05] bg-white/90 backdrop-blur-xl">
             <div className="flex items-center gap-3">
-              <button
-                className="
-                  w-8
-                  h-8
-                  rounded-lg
-                  flex
-                  items-center
-                  justify-center
-                  text-gray-500
-                  hover:text-white
-                  hover:bg-white/[0.06]
-                  transition
-                "
-              >
+              <button className=" w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:text-white hover:bg-white/[0.06] transition">
                 {activePage ? (
                   <ChevronDown size={16} />
                 ) : (
@@ -476,10 +404,7 @@ const Notebook = () => {
 
               {activePage && (
                 <>
-                  <ChevronRight
-                    size={13}
-                    className="text-gray-700"
-                  />
+                  <ChevronRight size={13} className="text-gray-700"/>
 
                   <div className="text-xs text-gray-300">
                     {activePage.title ||
@@ -496,39 +421,11 @@ const Notebook = () => {
                   Saved
                 </div>
 
-                <button
-                  onClick={deletePage}
-                  className="
-                    w-8
-                    h-8
-                    rounded-lg
-                    flex
-                    items-center
-                    justify-center
-                    text-gray-600
-                    hover:text-red-400
-                    hover:bg-red-500/10
-                    transition
-                  "
-                  title="Delete page"
-                >
+                <button onClick={deletePage} className=" w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 hover:text-red-400 hover:bg-red-500/10 transition" title="Delete page">
                   <Trash2 size={15} />
                 </button>
 
-                <button
-                  className="
-                    w-8
-                    h-8
-                    rounded-lg
-                    flex
-                    items-center
-                    justify-center
-                    text-gray-600
-                    hover:text-white
-                    hover:bg-white/[0.06]
-                    transition
-                  "
-                >
+                <button className=" w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 hover:text-white hover:bg-white/[0.06] transition">
                   <MoreHorizontal size={16} />
                 </button>
               </div>
