@@ -1,41 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  ShieldCheck,
-  Code2,
-  Github,
-  Search,
-  Sparkles,
-  AlertTriangle,
-  CheckCircle2,
-  Upload,
-  Send,
-  Loader2,
-  GitBranch,
-  ArrowLeft,
-  RefreshCw,
-  Lock,
-  Globe,
-  FolderGit2,
-} from "lucide-react";
+import { ShieldCheck, Code2, Github, Search, Sparkles, AlertTriangle, CheckCircle2, Upload, Send, Loader2, GitBranch, ArrowLeft, RefreshCw, Lock, Globe, FolderGit2, } from "lucide-react";
 
 const API_URL =
   import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 const NewChat = () => {
-  // ---------------------------------------
+
   // MAIN MODE
-  // ---------------------------------------
+  
   const [mode, setMode] = useState("manual");
 
-  // ---------------------------------------
   // MANUAL CODE
-  // ---------------------------------------
+  
   const [code, setCode] = useState("");
 
-  // ---------------------------------------
   // GITHUB
-  // ---------------------------------------
+  
   const [repositories, setRepositories] = useState([]);
   const [selectedRepo, setSelectedRepo] = useState(null);
   const [branches, setBranches] = useState([]);
@@ -45,16 +26,14 @@ const NewChat = () => {
   const [loadingRepos, setLoadingRepos] = useState(false);
   const [loadingBranches, setLoadingBranches] = useState(false);
 
-  // ---------------------------------------
   // ANALYSIS
-  // ---------------------------------------
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
 
-  // ---------------------------------------
   // LOAD GITHUB REPOSITORIES
-  // ---------------------------------------
+  
   const loadRepositories = async () => {
     setLoadingRepos(true);
     setError("");
@@ -87,18 +66,16 @@ const NewChat = () => {
     }
   };
 
-  // ---------------------------------------
   // LOAD REPOSITORIES WHEN GITHUB TAB OPENS
-  // ---------------------------------------
+ 
   useEffect(() => {
     if (mode === "github") {
       loadRepositories();
     }
   }, [mode]);
 
-  // ---------------------------------------
   // SELECT REPOSITORY
-  // ---------------------------------------
+  
   const selectRepository = async (repo) => {
     setSelectedRepo(repo);
     setSelectedBranch(
@@ -147,9 +124,8 @@ const NewChat = () => {
     }
   };
 
-  // ---------------------------------------
   // CHANGE REPOSITORY
-  // ---------------------------------------
+  
   const changeRepository = () => {
     setSelectedRepo(null);
     setBranches([]);
@@ -157,14 +133,14 @@ const NewChat = () => {
     setError("");
   };
 
-  // ---------------------------------------
   // ANALYZE
-  // ---------------------------------------
+ 
   const handleAnalyze = async () => {
     setError("");
     setResult(null);
 
     // Manual validation
+
     if (mode === "manual" && !code.trim()) {
       setError(
         "Please enter some code before starting the analysis."
@@ -173,6 +149,7 @@ const NewChat = () => {
     }
 
     // GitHub validation
+
     if (mode === "github" && !selectedRepo) {
       setError(
         "Please select a GitHub repository first."
@@ -240,9 +217,8 @@ const NewChat = () => {
     }
   };
 
-  // ---------------------------------------
   // FILTER REPOSITORIES
-  // ---------------------------------------
+  
   const filteredRepositories =
     repositories.filter((repo) => {
       const search =
@@ -261,9 +237,8 @@ const NewChat = () => {
       );
     });
 
-  // ---------------------------------------
   // RENDER
-  // ---------------------------------------
+  
   return (
     <main
       className="
@@ -276,108 +251,32 @@ const NewChat = () => {
         md:w-[calc(100%-var(--nova-sidebar-width))]
       "
     >
-      {/* =====================================
-          BACKGROUND
-      ====================================== */}
+      {/* BACKGROUND */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="
-            absolute
-            top-[-250px]
-            left-[30%]
-            w-[500px]
-            h-[500px]
-            bg-purple-500/[0.08]
-            blur-[150px]
-            rounded-full
-          "
-        />
-
-        <div
-          className="
-            absolute
-            bottom-[-250px]
-            right-[10%]
-            w-[500px]
-            h-[500px]
-            bg-cyan-500/[0.06]
-            blur-[150px]
-            rounded-full
-          "
-        />
+        <div className=" absolute top-[-250px] left-[30%] w-[500px] h-[500px] bg-purple-500/[0.08] blur-[150px] rounded-full "/>
+        <div className=" absolute bottom-[-250px] right-[10%] w-[500px] h-[500px] bg-cyan-500/[0.06] blur-[150px] rounded-full "/>
       </div>
 
-      {/* =====================================
-          CONTENT
-      ====================================== */}
+      {/* CONTENT */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-6">
 
-        {/* ===================================
-            HEADER
-        ==================================== */}
+        {/* HEADER */}
         <div
-          className="
-            flex
-            flex-col
-            sm:flex-row
-            sm:items-center
-            sm:justify-between
-            gap-4
-            mb-6
-          "
-        >
+          className=" flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 ">
           <div>
             <div className="flex items-center gap-2">
-              <ShieldCheck
-                className="text-purple-400"
-                size={20}
-              />
-
-              <h1
-                className="
-                  text-xl
-                  sm:text-2xl
-                  font-semibold
-                  tracking-tight
-                "
-              >
-                NOVA Security Analysis
-              </h1>
+              <h1 className=" text-xl sm:text-2xl font-semibold tracking-tight "> COSXIA Security Analysis </h1>
             </div>
 
-            <p
-              className="
-                text-xs
-                sm:text-sm
-                text-gray-500
-                mt-1
-              "
-            >
+            <p className=" text-xs sm:text-sm text-gray-500 mt-1 ">
               Secure your code with AI-powered
               vulnerability analysis.
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span
-              className="
-                w-2
-                h-2
-                rounded-full
-                bg-emerald-400
-                animate-pulse
-              "
-            />
-
-            <span className="text-xs text-gray-400">
-              NOVA Engine Ready
-            </span>
-          </div>
         </div>
 
-        {/* ===================================
-            MODE SELECTOR
-        ==================================== */}
+        {/* MODE SELECTOR */}
         <div className="flex items-center gap-2 mb-5">
 
           {/* MANUAL */}
@@ -385,37 +284,9 @@ const NewChat = () => {
             onClick={() => {
               setMode("manual");
               setResult(null);
-              setError("");
-            }}
-            className={`
-              flex
-              items-center
-              gap-2
-              px-4
-              py-2
-              rounded-lg
-              text-xs
-              border
-              transition-all
-              ${
-                mode === "manual"
-                  ? `
-                    bg-purple-500/15
-                    border-purple-500/40
-                    text-purple-300
-                  `
-                  : `
-                    bg-gray-50
-                    border-gray-200
-                    text-gray-500
-                    hover:text-gray-500
-                  `
-              }
-            `}
-          >
-            <Code2 size={14} />
-
-            Manual Code
+              setError(""); }}
+            className={` flex items-center gap-2 px-4 py-2 rounded-lg text-xs border transition-all ${ mode === "manual" ? ` bg-purple-500/15 border-purple-500/40 text-purple-600 ` : ` bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-500 ` } `} >
+            <Code2 size={14} /> Manual Code
           </button>
 
           {/* GITHUB */}
@@ -424,99 +295,28 @@ const NewChat = () => {
               setMode("github");
               setResult(null);
               setError("");
-            }}
-            className={`
-              flex
-              items-center
-              gap-2
-              px-4
-              py-2
-              rounded-lg
-              text-xs
-              border
-              transition-all
-              ${
-                mode === "github"
-                  ? `
-                    bg-purple-500/15
-                    border-purple-500/40
-                    text-purple-300
-                  `
-                  : `
-                    bg-gray-50
-                    border-gray-200
-                    text-gray-500
-                    hover:text-gray-500
-                  `
-              }
-            `}
-          >
-            <Github size={14} />
-
-            Git Repository
+            }} className={` flex items-center gap-2 px-4 py-2 rounded-lg text-xs border transition-all ${ mode === "github" ? ` bg-purple-500/15 border-purple-500/40 text-purple-600 ` : ` bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-500 ` } `} >
+            <Github size={14} /> Git Repository
           </button>
         </div>
 
-        {/* ===================================
-            WORKSPACE
-        ==================================== */}
-        <div
-          className="
-            grid
-            grid-cols-1
-            lg:grid-cols-[minmax(0,1fr)_380px]
-            gap-4
-          "
-        >
+        {/* WORKSPACE */}
+        <div className=" grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_380px] gap-4 ">
 
-          {/* =================================
-              LEFT PANEL
-          ================================== */}
+          {/* LEFT PANEL */}
           <motion.section
-            initial={{
-              opacity: 0,
-              y: 15,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            className="
-              min-w-0
-              rounded-2xl
-              border
-              border-gray-200
-              bg-white
-              backdrop-blur-xl
-              overflow-hidden
-            "
-          >
+            initial={{ opacity: 0, y: 15, }}
+            animate={{ opacity: 1, y: 0, }}
+            className=" min-w-0 rounded-2xl border border-gray-200 bg-white backdrop-blur-xl overflow-hidden ">
 
             {/* PANEL HEADER */}
-            <div
-              className="
-                h-12
-                px-4
-                flex
-                items-center
-                justify-between
-                border-b
-                border-gray-200
-              "
-            >
+            <div className=" h-12 px-4 flex items-center justify-between border-b border-gray-200 ">
               <div className="flex items-center gap-2">
 
                 {mode === "manual" ? (
-                  <Code2
-                    size={15}
-                    className="text-purple-400"
-                  />
+                  <Code2 size={15} className="text-purple-400" />
                 ) : (
-                  <Github
-                    size={15}
-                    className="text-purple-400"
-                  />
-                )}
+                  <Github size={15} className="text-purple-400"/> )}
 
                 <span className="text-xs text-gray-500">
                   {mode === "manual"
@@ -532,18 +332,11 @@ const NewChat = () => {
               </span>
             </div>
 
-            {/* =================================
-                MANUAL CODE
-            ================================== */}
+            {/* MANUAL CODE */}
             {mode === "manual" && (
               <div className="p-4">
 
-                <textarea
-                  value={code}
-                  onChange={(e) =>
-                    setCode(e.target.value)
-                  }
-                  placeholder={`// Paste your code here...
+                <textarea value={code} onChange={(e) => setCode(e.target.value)} placeholder={`// Paste your code here...
 
 function login(username, password) {
     const query =
@@ -555,276 +348,78 @@ function login(username, password) {
 
     return database.query(query);
 }`}
-                  className="
-                    w-full
-                    min-h-[430px]
-                    resize-none
-                    bg-gray-50
-                    border
-                    border-gray-200
-                    rounded-xl
-                    p-4
-                    text-sm
-                    text-gray-500
-                    font-mono
-                    leading-6
-                    outline-none
-                    placeholder:text-gray-500
-                    focus:border-purple-500/30
-                    transition
-                  "
-                />
+                  className=" w-full min-h-[430px] resize-none bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm text-gray-500 font-mono leading-6 outline-none placeholder:text-gray-500 focus:border-purple-500/30 transition "/>
 
                 {/* MANUAL ACTIONS */}
-                <div
-                  className="
-                    mt-3
-                    flex
-                    items-center
-                    justify-between
-                    gap-3
-                  "
-                >
+                <div className=" mt-3 flex items-center justify-between gap-3 ">
 
                   {/* UPLOAD */}
-                  <label
-                    className="
-                      cursor-pointer
-                      flex
-                      items-center
-                      gap-2
-                      px-3
-                      py-2
-                      rounded-lg
-                      border
-                      border-gray-200
-                      bg-white
-                      text-xs
-                      text-gray-500
-                      hover:text-gray-500
-                      hover:bg-white/[0.05]
-                      transition
-                    "
-                  >
-                    <Upload size={14} />
-
-                    Upload File
-
-                    <input
-                      type="file"
-                      className="hidden"
-                      accept="
-                        .js,
-                        .jsx,
-                        .ts,
-                        .tsx,
-                        .py,
-                        .java,
-                        .cpp,
-                        .c,
-                        .php,
-                        .go,
-                        .rb,
-                        .sql
-                      "
+                  <label className=" cursor-pointer flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-xs text-gray-500 hover:text-gray-500 hover:bg-white/[0.05] transition " >
+                    <Upload size={14} /> Upload File
+                    <input type="file" className="hidden" accept=" .js, .jsx, .ts, .tsx, .py, .java, .cpp, .c, .php, .go, .rb, .sql "
                       onChange={(e) => {
                         const file =
                           e.target.files?.[0];
-
                         if (!file) return;
-
                         const reader =
                           new FileReader();
-
                         reader.onload = (event) => {
                           setCode(
                             event.target
                               ?.result || ""
                           );
                         };
-
-                        reader.readAsText(file);
-                      }}
-                    />
+                        reader.readAsText(file); }}/>
                   </label>
 
                   {/* ANALYZE */}
-                  <button
-                    onClick={handleAnalyze}
-                    disabled={loading}
-                    className="
-                      flex
-                      items-center
-                      gap-2
-                      px-5
-                      py-2.5
-                      rounded-lg
-                      bg-gradient-to-r
-                      from-purple-600
-                      to-blue-600
-                      text-gray-900
-                      text-xs
-                      font-medium
-                      shadow-[0_0_25px_rgba(139,92,246,0.2)]
-                      hover:shadow-[0_0_35px_rgba(139,92,246,0.35)]
-                      hover:scale-[1.02]
-                      active:scale-95
-                      disabled:opacity-50
-                      disabled:hover:scale-100
-                      transition-all
-                    "
-                  >
+                  <button onClick={handleAnalyze} disabled={loading} className=" flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 to-nav text-white text-xs font-medium shadow-[0_0_25px_rgba(139,92,246,0.2)] hover:shadow-[0_0_35px_rgba(139,92,246,0.35)] hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all ">
                     {loading ? (
-                      <>
-                        <Loader2
-                          size={14}
-                          className="animate-spin"
-                        />
-
-                        Analyzing
-                      </>
+                      <> <Loader2 size={14} className="animate-spin" /> Analyzing </>
                     ) : (
-                      <>
-                        <Send size={14} />
-
-                        Analyze Code
-                      </>
+                      <> <Send size={14} /> Analyze Code </>
                     )}
                   </button>
                 </div>
               </div>
             )}
 
-            {/* =================================
-                GITHUB IMPORT
-            ================================== */}
+            {/* GITHUB IMPORT */}
             {mode === "github" && (
               <div className="p-5">
 
-                {/* =================================
-                    SELECTED REPOSITORY
-                ================================== */}
+                {/* SELECTED REPOSITORY */}
                 {selectedRepo ? (
                   <div>
 
                     {/* BACK / CHANGE */}
                     <button
-                      onClick={
-                        changeRepository
-                      }
-                      className="
-                        flex
-                        items-center
-                        gap-2
-                        text-xs
-                        text-gray-500
-                        hover:text-gray-900
-                        transition
-                        mb-5
-                      "
-                    >
-                      <ArrowLeft size={14} />
-
-                      All repositories
+                      onClick={ changeRepository } className=" flex items-center gap-2 text-xs text-gray-500 hover:text-gray-900 transition mb-5 ">
+                      <ArrowLeft size={14} /> All repositories
                     </button>
 
                     {/* SELECTED REPO CARD */}
-                    <div
-                      className="
-                        rounded-xl
-                        border
-                        border-purple-500/20
-                        bg-purple-500/[0.04]
-                        p-4
-                        mb-5
-                      "
-                    >
-                      <div
-                        className="
-                          flex
-                          items-center
-                          justify-between
-                          gap-3
-                        "
-                      >
-
-                        <div
-                          className="
-                            flex
-                            items-center
-                            gap-3
-                            min-w-0
-                          "
-                        >
-                          <div
-                            className="
-                              w-10
-                              h-10
-                              rounded-lg
-                              bg-purple-500/10
-                              border
-                              border-purple-500/20
-                              flex
-                              items-center
-                              justify-center
-                              shrink-0
-                            "
-                          >
-                            <FolderGit2
-                              size={18}
-                              className="text-purple-400"
-                            />
+                    <div className=" rounded-xl border border-purple-500/20 bg-purple-500/[0.04] p-4 mb-5 ">
+                      <div className=" flex items-center justify-between gap-3">
+                        <div className=" flex items-center gap-3 min-w-0">
+                          <div className=" w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0 ">
+                            <FolderGit2 size={18} className="text-purple-400"/>
                           </div>
 
                           <div className="min-w-0">
-                            <p
-                              className="
-                                text-sm
-                                text-gray-800
-                                truncate
-                              "
-                            >
-                              {selectedRepo.name}
-                            </p>
-
-                            <p
-                              className="
-                                text-[11px]
-                                text-gray-400
-                                truncate
-                                mt-1
-                              "
-                            >
-                              {selectedRepo.fullName}
-                            </p>
+                            <p className=" text-sm text-gray-800 truncate "> {selectedRepo.name} </p>
+                            <p className=" text-[11px] text-gray-400 truncate mt-1"> {selectedRepo.fullName} </p>
                           </div>
                         </div>
 
-                        <span
-                          className="
-                            text-[10px]
-                            text-emerald-400
-                            whitespace-nowrap
-                          "
-                        >
-                          Selected
-                        </span>
+                        <span className=" text-[10px] text-emerald-400 whitespace-nowrap "> Selected </span>
                       </div>
                     </div>
 
                     {/* BRANCH */}
-                    <label
-                      className="
-                        block
-                        text-xs
-                        text-gray-400
-                        mb-2
-                      "
-                    >
+                    <label className=" block text-xs text-gray-400 mb-2">
                       <span className="flex items-center gap-2">
-                        <GitBranch size={13} />
-
-                        Branch
+                        <GitBranch size={13} /> Branch
                       </span>
                     </label>
 
@@ -832,114 +427,35 @@ function login(username, password) {
 
                       <select
                         value={selectedBranch}
-                        onChange={(e) =>
-                          setSelectedBranch(
-                            e.target.value
-                          )
-                        }
-                        disabled={
-                          loadingBranches
-                        }
-                        className="
-                          appearance-none
-                          w-full
-                          bg-gray-50
-                          border
-                          border-gray-200
-                          rounded-xl
-                          px-4
-                          py-3
-                          text-sm
-                          text-gray-500
-                          outline-none
-                          focus:border-purple-500/30
-                        "
-                      >
+                        onChange={(e) => setSelectedBranch( e.target.value ) }
+                        disabled={ loadingBranches }
+                        className=" appearance-none w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-500 outline-none focus:border-purple-500/30 ">
                         {loadingBranches ? (
-                          <option>
-                            Loading branches...
-                          </option>
+                          <option>Loading branches...</option>
                         ) : branches.length >
                           0 ? (
                           branches.map(
                             (branch) => (
-                              <option
-                                key={
-                                  branch.name
-                                }
-                                value={
-                                  branch.name
-                                }
-                              >
-                                {branch.name}
-                              </option>
-                            )
-                          )
+                              <option key={ branch.name } value={ branch.name }> {branch.name} </option> ))
                         ) : (
-                          <option
-                            value={
-                              selectedBranch
-                            }
-                          >
-                            {selectedBranch}
-                          </option>
+                          <option value={ selectedBranch }> {selectedBranch} </option>
                         )}
                       </select>
 
-                      <GitBranch
-                        size={14}
-                        className="
-                          absolute
-                          right-4
-                          top-1/2
-                          -translate-y-1/2
-                          text-gray-400
-                          pointer-events-none
-                        "
-                      />
+                      <GitBranch size={14} className=" absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"/>
                     </div>
 
                     {/* REPOSITORY INFO */}
-                    <div
-                      className="
-                        rounded-xl
-                        border
-                        border-gray-200
-                        bg-gray-50
-                        p-4
-                        mb-5
-                      "
-                    >
+                    <div className=" rounded-xl border border-gray-200 bg-gray-50 p-4 mb-5 ">
                       <div className="flex gap-3">
-
                         {selectedRepo.private ? (
-                          <Lock
-                            size={16}
-                            className="text-gray-500 mt-0.5"
-                          />
+                          <Lock size={16} className="text-gray-500 mt-0.5"/>
                         ) : (
-                          <Globe
-                            size={16}
-                            className="text-gray-500 mt-0.5"
-                          />
-                        )}
-
+                          <Globe size={16} className="text-gray-500 mt-0.5" /> )}
                         <div>
-                          <p className="text-xs text-gray-500">
-                            {selectedRepo.private
-                              ? "Private repository"
-                              : "Public repository"}
-                          </p>
-
-                          <p
-                            className="
-                              text-[11px]
-                              text-gray-400
-                              mt-1
-                              leading-5
-                            "
-                          >
-                            NOVA will use your connected
+                          <p className="text-xs text-gray-500"> {selectedRepo.private ? "Private repository" : "Public repository"}</p>
+                          <p className=" text-[11px] text-gray-400 mt-1 leading-5 ">
+                            COSXIA will use your connected
                             GitHub access to read the
                             selected repository and analyze
                             its source code.
@@ -950,198 +466,48 @@ function login(username, password) {
                     </div>
 
                     {/* IMPORT BUTTON */}
-                    <button
-                      onClick={
-                        handleAnalyze
-                      }
-                      disabled={
-                        loading ||
-                        loadingBranches ||
-                        !selectedRepo
-                      }
-                      className="
-                        w-full
-                        flex
-                        items-center
-                        justify-center
-                        gap-2
-                        py-3
-                        rounded-xl
-                        bg-gradient-to-r
-                        from-purple-600
-                        to-blue-600
-                        text-sm
-                        font-medium
-                        shadow-[0_0_25px_rgba(139,92,246,0.2)]
-                        hover:shadow-[0_0_35px_rgba(139,92,246,0.35)]
-                        hover:scale-[1.01]
-                        active:scale-95
-                        disabled:opacity-50
-                        disabled:hover:scale-100
-                        transition-all
-                      "
-                    >
+                    <button onClick={ handleAnalyze } disabled={ loading || loadingBranches || !selectedRepo } className=" w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-sm font-medium shadow-[0_0_25px_rgba(139,92,246,0.2)] hover:shadow-[0_0_35px_rgba(139,92,246,0.35)] hover:scale-[1.01] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all ">
                       {loading ? (
-                        <>
-                          <Loader2
-                            size={16}
-                            className="animate-spin"
-                          />
-
-                          Importing Repository...
-                        </>
+                        <> <Loader2 size={16} className="animate-spin"/> Importing Repository... </>
                       ) : (
-                        <>
-                          <Github size={16} />
-
-                          Import Repository
-                        </>
-                      )}
+                        <> <Github size={16} /> Import Repository </> )}
                     </button>
                   </div>
                 ) : (
-                  /* =================================
-                     REPOSITORY LIST
-                  ================================== */
+                  /* REPOSITORY LIST */
                   <div>
 
                     {/* GITHUB HEADER */}
-                    <div
-                      className="
-                        flex
-                        items-center
-                        justify-between
-                        mb-5
-                      "
-                    >
-                      <div
-                        className="
-                          flex
-                          items-center
-                          gap-3
-                        "
-                      >
-                        <div
-                          className="
-                            w-10
-                            h-10
-                            rounded-xl
-                            bg-white/[0.05]
-                            border
-                            border-gray-200
-                            flex
-                            items-center
-                            justify-center
-                          "
-                        >
-                          <Github
-                            size={19}
-                            className="text-gray-900"
-                          />
+                    <div className=" flex items-center justify-between mb-5">
+                      <div className=" flex items-center gap-3 ">
+                        <div className=" w-10 h-10 rounded-xl bg-white/[0.05] border border-gray-200 flex items-center justify-center">
+                          <Github size={19} className="text-gray-900" />
                         </div>
 
                         <div>
-                          <p className="text-sm text-gray-800">
-                            Import from GitHub
-                          </p>
-
-                          <p
-                            className="
-                              text-[11px]
-                              text-emerald-400
-                              mt-1
-                            "
-                          >
-                            GitHub connected
-                          </p>
+                          <p className="text-sm text-gray-800"> Import from GitHub </p>
+                          <p className=" text-[11px] text-emerald-400 mt-1"> GitHub connected </p>
                         </div>
                       </div>
 
                       {/* REFRESH */}
-                      <button
-                        onClick={
-                          loadRepositories
-                        }
-                        disabled={
-                          loadingRepos
-                        }
-                        title="Refresh repositories"
-                        className="
-                          w-8
-                          h-8
-                          rounded-lg
-                          flex
-                          items-center
-                          justify-center
-                          border
-                          border-gray-200
-                          bg-gray-50
-                          text-gray-500
-                          hover:text-gray-900
-                          hover:bg-white/[0.06]
-                          transition
-                        "
-                      >
-                        <RefreshCw
-                          size={14}
-                          className={
-                            loadingRepos
-                              ? "animate-spin"
-                              : ""
-                          }
-                        />
+                      <button onClick={ loadRepositories } disabled={ loadingRepos} title="Refresh repositories" className=" w-8 h-8 rounded-lg flex items-center justify-center border border-gray-200 bg-gray-50 text-gray-500 hover:text-gray-90 hover:bg-white/[0.06] transition">
+                        <RefreshCw size={14} className={ loadingRepos ? "animate-spin" : "" } />
                       </button>
                     </div>
 
                     {/* SEARCH */}
                     <div className="relative mb-4">
-
-                      <Search
-                        size={15}
-                        className="
-                          absolute
-                          left-3
-                          top-1/2
-                          -translate-y-1/2
-                          text-gray-400
-                        "
-                      />
-
+                      <Search size={15} className=" absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 " />
                       <input
                         value={repoSearch}
-                        onChange={(e) =>
-                          setRepoSearch(
-                            e.target.value
-                          )
-                        }
+                        onChange={(e) => setRepoSearch( e.target.value ) }
                         placeholder="Search repositories..."
-                        className="
-                          w-full
-                          bg-gray-50
-                          border
-                          border-gray-200
-                          rounded-xl
-                          py-3
-                          pl-10
-                          pr-4
-                          text-sm
-                          text-gray-500
-                          outline-none
-                          placeholder:text-gray-500
-                          focus:border-purple-500/30
-                        "
-                      />
+                        className=" w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm text-gray-500 outline-none placeholder:text-gray-500 focus:border-purple-500/30 "/>
                     </div>
 
                     {/* REPOSITORIES */}
-                    <div
-                      className="
-                        space-y-2
-                        max-h-[430px]
-                        overflow-y-auto
-                        pr-1
-                      "
-                    >
+                    <div className=" space-y-2 max-h-[430px] overflow-y-auto pr-1">
                       {loadingRepos ? (
                         <div
                           className="
