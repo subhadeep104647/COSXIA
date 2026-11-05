@@ -520,126 +520,31 @@ function login(username, password) {
                             <button key={repo.id} onClick={() => selectRepository( repo)} className=" w-full text-left p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-purple-500/[0.06] hover:border-purple-500/20 transition-all group">
                               <div className=" flex items-center justify-between gap-3">
                                 <div className=" flex items-center gap-3 min-w-0">
-                                  <div
-                                    className="
-                                      w-9
-                                      h-9
-                                      rounded-lg
-                                      bg-white/[0.04]
-                                      border
-                                      border-gray-200
-                                      flex
-                                      items-center
-                                      justify-center
-                                      shrink-0
-                                    ">
-                                    <Github
-                                      size={16}
-                                      className="
-                                        text-gray-500
-                                        group-hover:text-purple-400
-                                        transition
-                                      "
-                                    />
+                                  <div className=" w-9 h-9 rounded-lg bg-white/[0.04] border border-gray-200 flex items-center justify-center shrink-0">
+                                    <Github size={16} className=" text-gray-500 group-hover:text-purple-400 transition"/>
                                   </div>
 
                                   <div className="min-w-0">
-
                                     <div className="flex items-center gap-2">
-                                      <p
-                                        className="
-                                          text-sm
-                                          text-gray-800
-                                          truncate
-                                        "
-                                      >
-                                        {repo.name}
-                                      </p>
-
-                                      {repo.private && (
-                                        <Lock
-                                          size={11}
-                                          className="text-gray-400 shrink-0"
-                                        />
-                                      )}
+                                      <p className=" text-sm text-gray-800 truncate"> {repo.name} </p>
+                                      {repo.private && ( <Lock size={11} className="text-gray-400 shrink-0"/>)}
                                     </div>
 
-                                    <p
-                                      className="
-                                        text-[11px]
-                                        text-gray-400
-                                        mt-1
-                                        truncate
-                                      "
-                                    >
-                                      {repo.fullName}
-                                    </p>
+                                    <p className=" text-[11px] text-gray-400 mt-1 truncate "> {repo.fullName} </p>
 
-                                    {repo.description && (
-                                      <p
-                                        className="
-                                          text-[10px]
-                                          text-gray-500
-                                          mt-1
-                                          truncate
-                                        "
-                                      >
-                                        {
-                                          repo.description
-                                        }
-                                      </p>
-                                    )}
+                                    {repo.description && ( <p className=" text-[10px] text-gray-500 mt-1 truncate ">{ repo.description } </p>)}
                                   </div>
                                 </div>
-
-                                <span
-                                  className="
-                                    text-[11px]
-                                    text-purple-400
-                                    opacity-0
-                                    group-hover:opacity-100
-                                    transition
-                                    whitespace-nowrap
-                                  "
-                                >
-                                  Import →
-                                </span>
+                                <span className=" text-[11px] text-purple-400 opacity-0 group-hover:opacity-100 transition whitespace-nowrap"> Import </span>
                               </div>
                             </button>
                           )
                         )
                       ) : (
-                        <div
-                          className="
-                            flex
-                            flex-col
-                            items-center
-                            justify-center
-                            py-16
-                            text-center
-                          "
-                        >
-                          <FolderGit2
-                            size={24}
-                            className="
-                              text-gray-500
-                              mb-3
-                            "
-                          />
-
-                          <p className="text-xs text-gray-500">
-                            No repositories found
-                          </p>
-
-                          <p
-                            className="
-                              text-[10px]
-                              text-gray-500
-                              mt-1
-                            "
-                          >
-                            Try another search.
-                          </p>
+                        <div className=" flex flex-col items-center justify-center py-16 text-center">
+                          <FolderGit2 size={24} className=" text-gray-500 mb-3 "/>
+                          <p className="text-xs text-gray-500"> No repositories found </p>
+                          <p className=" text-[10px] text-gray-500 mt-1 "> Try another search. </p>
                         </div>
                       )}
                     </div>
@@ -649,299 +554,87 @@ function login(username, password) {
             )}
           </motion.section>
 
-          {/* =================================
-              RIGHT ANALYSIS PANEL
-          ================================== */}
-          <motion.section
-            initial={{
-              opacity: 0,
-              x: 20,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            className="
-              min-w-0
-              rounded-2xl
-              border
-              border-gray-200
-              bg-white
-              backdrop-blur-xl
-              overflow-hidden
-              min-h-[500px]
-            "
-          >
+          {/* RIGHT ANALYSIS PANEL */}
+          <motion.section initial={{ opacity: 0, x: 20, }} animate={{ opacity: 1, x: 0,}} className=" min-w-0 rounded-2xl border border-gray-200 bg-white backdrop-blur-xl overflow-hidden min-h-[500px] ">
 
             {/* ANALYSIS HEADER */}
-            <div
-              className="
-                h-12
-                px-4
-                flex
-                items-center
-                justify-between
-                border-b
-                border-gray-200
-              "
-            >
+            <div className=" h-12 px-4 flex items-center justify-between border-b border-gray-200 ">
               <div className="flex items-center gap-2">
-
-                <Sparkles
-                  size={15}
-                  className="text-purple-400"
-                />
-
-                <span className="text-xs text-gray-500">
-                  Security Analysis
-                </span>
+                <Sparkles size={15} className="text-purple-400" />
+                <span className="text-xs text-gray-500"> Security Analys </span>
               </div>
 
               {result && (
-                <span className="text-[10px] text-emerald-400">
-                  Analysis Complete
-                </span>
+                <span className="text-[10px] text-emerald-400"> Analysis Complete </span>
               )}
             </div>
 
-            {/* =================================
-                ERROR
-            ================================== */}
+            {/* ERROR */}
             {error && (
-              <div
-                className="
-                  m-4
-                  p-4
-                  rounded-xl
-                  border
-                  border-red-500/20
-                  bg-red-500/[0.05]
-                "
-              >
+              <div className=" m-4 p-4 rounded-xl border border-red-500/20 bg-red-500/[0.05]">
                 <div className="flex gap-3">
-
-                  <AlertTriangle
-                    size={18}
-                    className="
-                      text-red-400
-                      shrink-0
-                    "
-                  />
-
+                  <AlertTriangle size={18} className=" text-red-400 shrink-0 "/>
                   <div>
-                    <p className="text-sm text-red-300">
-                      Something went wrong
-                    </p>
-
-                    <p
-                      className="
-                        text-xs
-                        text-red-400/70
-                        mt-1
-                        leading-5
-                      "
-                    >
-                      {error}
-                    </p>
+                    <p className="text-sm text-red-300"> Something went wrong </p>
+                    <p className=" text-xs text-red-400/70 mt-1 leading-5 "> {error} </p>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* =================================
-                LOADING
-            ================================== */}
+            {/* LOADING
+             */}
             {loading && (
               <div
-                className="
-                  min-h-[450px]
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-                  text-center
-                  px-6
-                "
-              >
-                <div
-                  className="
-                    w-12
-                    h-12
-                    rounded-xl
-                    bg-purple-500/10
-                    border
-                    border-purple-500/20
-                    flex
-                    items-center
-                    justify-center
-                    mb-4
-                  "
-                >
-                  <Loader2
-                    size={22}
-                    className="
-                      text-purple-400
-                      animate-spin
-                    "
-                  />
+                className=" min-h-[450px] flex flex-col items-center justify-center text-center px-6">
+                <div className=" w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4 ">
+                  <Loader2 size={22} className=" text-purple-400 animate-spin"/>
                 </div>
 
-                <p className="text-sm text-gray-500">
-                  NOVA is analyzing your code
-                </p>
+                <p className="text-sm text-gray-500"> Analyzing your code</p>
 
-                <p
-                  className="
-                    text-xs
-                    text-gray-400
-                    mt-2
-                    max-w-xs
-                    leading-5
-                  "
-                >
+                <p className=" text-xs text-gray-400 mt-2 max-w-xs leading-5">
                   Detecting vulnerabilities and
                   generating security explanations...
                 </p>
               </div>
             )}
 
-            {/* =================================
-                EMPTY
-            ================================== */}
+            {/* EMPTY */}
             {!loading &&
               !result &&
               !error && (
-                <div
-                  className="
-                    min-h-[450px]
-                    flex
-                    flex-col
-                    items-center
-                    justify-center
-                    text-center
-                    px-6
-                  "
-                >
-                  <div
-                    className="
-                      w-12
-                      h-12
-                      rounded-xl
-                      bg-purple-500/10
-                      border
-                      border-purple-500/20
-                      flex
-                      items-center
-                      justify-center
-                      mb-4
-                    "
-                  >
-                    <Search
-                      size={20}
-                      className="text-purple-400"
-                    />
+                <div className=" min-h-[450px] flex flex-col items-center justify-center text-center px-6">
+                  <div className=" w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4">
+                    <Search size={20} className="text-purple-400"/>
                   </div>
-
-                  <h3 className="text-sm font-medium text-gray-500">
-                    Ready to Analyze
-                  </h3>
-
-                  <p
-                    className="
-                      text-xs
-                      text-gray-400
-                      mt-2
-                      max-w-xs
-                      leading-5
-                    "
-                  >
+                  <h3 className="text-sm font-medium text-gray-500"> Ready to Analyze </h3>
+                  <p className=" text-xs text-gray-400 mt-2 max-w-xs leading-5">
                     Paste your code or import a GitHub
-                    repository to start NOVA's security
+                    repository to start COSXIA's security
                     analysis.
                   </p>
                 </div>
               )}
 
-            {/* =================================
-                RESULT
-            ================================== */}
+            {/* RESULT */}
             {!loading && result && (
               <div className="p-4 space-y-4">
 
                 {/* SUMMARY */}
-                <div
-                  className="
-                    rounded-xl
-                    border
-                    border-gray-200
-                    bg-gray-50
-                    p-4
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      items-center
-                      justify-between
-                      gap-3
-                      mb-3
-                    "
-                  >
-                    <span className="text-xs text-gray-500">
-                      Security Summary
-                    </span>
-
+                <div className=" rounded-xl border border-gray-200 bg-gray-50 p-4">
+                  <div className=" flex items-center justify-between gap-3 mb-3">
+                    <span className="text-xs text-gray-500"> Security Summary </span>
                     {result.riskLevel && (
-                      <span
-                        className={`
-                          px-2.5
-                          py-1
-                          rounded-md
-                          text-[10px]
-                          font-medium
-                          ${
-                            result.riskLevel
-                              .toLowerCase() ===
-                            "high"
-                              ? `
-                                bg-red-500/10
-                                text-red-400
-                                border
-                                border-red-500/20
-                              `
-                              : result.riskLevel
-                                  .toLowerCase() ===
-                                "medium"
-                              ? `
-                                bg-yellow-500/10
-                                text-yellow-400
-                                border
-                                border-yellow-500/20
-                              `
-                              : `
-                                bg-emerald-500/10
-                                text-emerald-400
-                                border
-                                border-emerald-500/20
-                              `
-                          }
-                        `}
-                      >
-                        {result.riskLevel}
-                      </span>
+                      <span className={` px-2.5 py-1 rounded-md text-[10px] font-medium
+                          ${ result.riskLevel .toLowerCase() === "high"
+                              ? ` bg-red-500/10 text-red-400 border border-red-500/20`
+                              : result.riskLevel .toLowerCase() === "medium"
+                              ? ` bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 `
+                              : ` bg-emerald-500/10 text-green-400 border border-emerald-500/20`}`}> {result.riskLevel} </span>
                     )}
                   </div>
-
-                  <p
-                    className="
-                      text-sm
-                      text-gray-500
-                      leading-6
-                    "
-                  >
-                    {result.summary ||
-                      "Analysis completed successfully."}
-                  </p>
+                  <p className=" text-sm text-gray-500 leading-6"> {result.summary || "Analysis completed successfully."} </p>
                 </div>
 
                 {/* VULNERABILITIES */}
@@ -950,43 +643,12 @@ function login(username, password) {
                 ) &&
                   result.vulnerabilities.map(
                     (item, index) => (
-                      <div
-                        key={index}
-                        className="
-                          rounded-xl
-                          border
-                          border-gray-200
-                          bg-gray-50
-                          p-4
-                        "
-                      >
-                        <div
-                          className="
-                            flex
-                            items-start
-                            justify-between
-                            gap-3
-                          "
-                        >
+                      <div key={index} className=" rounded-xl border border-gray-200 bg-gray-50 p-4">
+                        <div className=" flex items-start justify-between gap-3">
                           <div>
-                            <h4 className="text-sm text-gray-800">
-                              {item.title ||
-                                "Security Vulnerability"}
-                            </h4>
-
-                            {item.line && (
-                              <p
-                                className="
-                                  text-[10px]
-                                  text-gray-400
-                                  mt-1
-                                "
-                              >
-                                Line {item.line}
-                              </p>
-                            )}
+                            <h4 className="text-sm text-gray-800"> {item.title || "Security Vulnerability"} </h4>
+                            {item.line && ( <p className=" text-[10px] text-gray-400 mt-1 "> Line {item.line} </p> )}
                           </div>
-
                           <span
                             className="
                               text-[10px]

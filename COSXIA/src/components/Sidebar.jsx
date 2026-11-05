@@ -273,7 +273,7 @@ const Sidebar = () => {
         {/* GITHUB REPOSITORY */}
 
         <div className={` mt-5 ${ isOpen ? "px-3" : "px-2" } `} >
-          <button onClick={handleGitRepository} className={` w-full h-10 flex items-center ${ isOpen ? "gap-2 px-2" : "justify-center" } rounded-xl text-gray-300 hover:text-white hover:bg-white/[0.05] transition-all `} title={ !isOpen ? "Git Repository" : ""}>
+          <button onClick={handleGitRepository} className={` w-full h-10 flex items-center ${ isOpen ? "gap-2 px-2" : "justify-center" } rounded-xl text-gray-600 hover:text-black hover:bg-white/[0.05] transition-all `} title={ !isOpen ? "Git Repository" : ""}>
             <IoLogoGithub className=" text-[18px] shrink-0 "/>
 
             {isOpen && (
