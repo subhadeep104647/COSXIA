@@ -509,69 +509,17 @@ function login(username, password) {
                     {/* REPOSITORIES */}
                     <div className=" space-y-2 max-h-[430px] overflow-y-auto pr-1">
                       {loadingRepos ? (
-                        <div
-                          className="
-                            flex
-                            flex-col
-                            items-center
-                            justify-center
-                            py-20
-                          "
-                        >
-                          <Loader2
-                            size={24}
-                            className="
-                              text-purple-400
-                              animate-spin
-                              mb-3
-                            "
-                          />
-
-                          <p className="text-xs text-gray-500">
-                            Loading your repositories...
-                          </p>
+                        <div className=" flex flex-col items-center justify-center py-20">
+                          <Loader2 size={24} className=" text-purple-400 animate-spin mb-3"/>
+                          <p className="text-xs text-gray-500"> Loading your repositories... </p>
                         </div>
                       ) : filteredRepositories.length >
                         0 ? (
                         filteredRepositories.map(
                           (repo) => (
-                            <button
-                              key={repo.id}
-                              onClick={() =>
-                                selectRepository(
-                                  repo
-                                )
-                              }
-                              className="
-                                w-full
-                                text-left
-                                p-4
-                                rounded-xl
-                                border
-                                border-gray-200
-                                bg-gray-50
-                                hover:bg-purple-500/[0.06]
-                                hover:border-purple-500/20
-                                transition-all
-                                group
-                              "
-                            >
-                              <div
-                                className="
-                                  flex
-                                  items-center
-                                  justify-between
-                                  gap-3
-                                "
-                              >
-                                <div
-                                  className="
-                                    flex
-                                    items-center
-                                    gap-3
-                                    min-w-0
-                                  "
-                                >
+                            <button key={repo.id} onClick={() => selectRepository( repo)} className=" w-full text-left p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-purple-500/[0.06] hover:border-purple-500/20 transition-all group">
+                              <div className=" flex items-center justify-between gap-3">
+                                <div className=" flex items-center gap-3 min-w-0">
                                   <div
                                     className="
                                       w-9
@@ -584,8 +532,7 @@ function login(username, password) {
                                       items-center
                                       justify-center
                                       shrink-0
-                                    "
-                                  >
+                                    ">
                                     <Github
                                       size={16}
                                       className="

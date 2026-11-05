@@ -404,7 +404,7 @@ const Notebook = () => {
               {activePage && (
                 <>
                   <ChevronRight size={13} className="text-gray-700"/>
-                  <div className="text-xs text-gray-300">
+                  <div className="text-xs text-gray-700">
                     {activePage.title || "Untitled Page"}
                   </div>
                 </>
@@ -413,9 +413,8 @@ const Notebook = () => {
 
             {activePage && (
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5 text-[10px] text-emerald-400">
-                  <Check size={12} />
-                  Saved
+                <div className="flex items-center gap-1.5 text-[10px] text-green-500">
+                  <Check size={12} /> Saved
                 </div>
 
                 <button onClick={deletePage} className=" w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 hover:text-red-400 hover:bg-red-500/10 transition" title="Delete page">
@@ -436,16 +435,17 @@ const Notebook = () => {
               <div className="max-w-4xl mx-auto px-8 md:px-14 py-12">
                 {/* PAGE ICON */}
 
-                <div className="mb-6">
+                <div className="mb-6 flex flex-row gap-2">
                   <div className=" w-11 h-11 rounded-xl bg-purple-500/[0.08] border border-purple-500/10 flex items-center justify-center ">
                     <FileText size={21} className="text-purple-400"/>
                   </div>
+                  {/* TITLE */}
+
+                  <input value={ activePage.title} onChange={(e) => updatePage( "title", e.target.value)} placeholder="Untitled Page" className=" w-full bg-transparent outline-none border-none text-3xl md:text-4xl font-semibold text-black placeholder:text-gray-700 mb-8"/>
+
                 </div>
 
-                {/* TITLE */}
-
-                <input value={ activePage.title} onChange={(e) => updatePage( "title", e.target.value)} placeholder="Untitled Page" className=" w-full bg-transparent outline-none border-none text-3xl md:text-4xl font-semibold text-white placeholder:text-gray-700 mb-8"/>
-
+                
                 {/* META */}
 
                 <div className=" flex items-center gap-4 mb-8 text-[10px] text-gray-600 ">
@@ -461,7 +461,7 @@ const Notebook = () => {
 
                 {/* CONTENT */}
 
-                <textarea value={activePage.content} onChange={(e) => updatePage( "content", e.target.value)} placeholder="Start writing..." spellCheck={true} className=" w-full min-h-[550px] resize-none bg-transparent outline-none border-none text-[15px] leading-8 text-gray-300 placeholder:text-gray-700 font-['Poppins'] scrollbar-hide"/>
+                <textarea value={activePage.content} onChange={(e) => updatePage( "content", e.target.value)} placeholder="Start writing..." spellCheck={true} className=" w-full min-h-[550px] resize-none bg-transparent outline-none border-none text-[15px] leading-8 text-gray-500 placeholder:text-gray-700 font-['Poppins'] scrollbar-hide"/>
               </div>
             </div>
           ) : (
