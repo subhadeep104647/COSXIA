@@ -309,15 +309,19 @@ export default function Home() {
           <motion.div
             initial={{
               opacity: 0,
-              x: -30,
+              x: -24,
+              y: 12,
+              filter: "blur(8px)",
             }}
             animate={{
               opacity: 1,
               x: 0,
+              y: 0,
+              filter: "blur(0px)",
             }}
             transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 1.05,
+              ease: [0.16, 1, 0.3, 1],
             }}
             className="
               relative
@@ -441,16 +445,22 @@ export default function Home() {
           <motion.div
             initial={{
               opacity: 0,
-              x: 30,
+              x: 22,
+              y: 8,
+              scale: 0.965,
+              filter: "blur(7px)",
             }}
             animate={{
               opacity: 1,
               x: 0,
+              y: 0,
+              scale: 1,
+              filter: "blur(0px)",
             }}
             transition={{
-              duration: 0.9,
-              delay: 0.1,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 1.25,
+              delay: 0.16,
+              ease: [0.16, 1, 0.3, 1],
             }}
             className="
               relative
@@ -464,8 +474,15 @@ export default function Home() {
             ================================================= */}
 
             {vulnerabilities.map((item, index) => (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, scale: 0.92, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  duration: 0.65,
+                  delay: 0.48 + index * 0.075,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className={`absolute z-40 ${item.position}`}
                 style={{
                   animation: `${item.animation} ${item.duration} ease-in-out infinite`,
@@ -519,7 +536,7 @@ export default function Home() {
 
                   {item.text}
                 </div>
-              </div>
+              </motion.div>
             ))}
 
             {/* =================================================
@@ -528,6 +545,7 @@ export default function Home() {
 
             <div
               className="
+                home-wave-reveal
                 group/wave
                 pointer-events-auto
                 absolute
@@ -739,6 +757,27 @@ export default function Home() {
       ===================================================== */}
 
       <style>{`
+        /* =================================================
+           HOME ENTRY — SOFT FOCUS REVEAL
+        ================================================= */
+
+        .home-wave-reveal {
+          animation: waveEntrance 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+        }
+
+        @keyframes waveEntrance {
+          from {
+            opacity: 0;
+            transform: translate3d(0, 18px, 0) scale(0.975);
+            filter: blur(6px);
+          }
+          to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+          }
+        }
+
         /* =================================================
            WAVE GPU OPTIMIZATION
         ================================================= */
@@ -963,6 +1002,7 @@ export default function Home() {
         ================================================= */
 
         @media (prefers-reduced-motion: reduce) {
+          .home-wave-reveal,
           .realistic-wave-dot,
           .wave-highlight,
           .depth-particle,

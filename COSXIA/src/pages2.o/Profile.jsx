@@ -154,7 +154,7 @@ const Profile = () => {
 
       if (!response.ok) {
         throw new Error(
-          `NOVA profile request failed: ${response.status}`
+          `COSXIA profile request failed: ${response.status}`
         );
       }
 
@@ -172,7 +172,7 @@ const Profile = () => {
         Array.isArray(activity) ? activity : []
       );
     } catch (error) {
-      console.warn("NOVA profile data unavailable:", error);
+      console.warn("COSXIA profile data unavailable:", error);
 
       /* Empty fallback keeps the profile usable even when, the backend has no security statistics yet.*/
       setNovaStats({
@@ -823,84 +823,35 @@ const Profile = () => {
               </div>
             )}
 
-            {/* =================================================
-                REPOSITORIES
-            ================================================= */}
-
+            {/* REPOSITORIES */}
             {activeTab === "Repositories" && (
               <div className="mt-5">
                 {githubConnected ? (
                   <>
-                    <SectionHeader
-                      icon={IoLogoGithub}
-                      title="GitHub Repositories"
-                      subtitle={`${normalizedRepositories.length} repositories available from your connected GitHub account.`}
-                    />
-
+                    <SectionHeader icon={IoLogoGithub} title="GitHub Repositories" subtitle={`${normalizedRepositories.length} repositories available from your connected GitHub account.`}/>
                     {normalizedRepositories.length === 0 ? (
-                      <EmptyState
-                        icon={IoFolderOutline}
-                        title="No repositories found"
-                        description="Your GitHub account is connected, but no repositories were returned."
-                      />
+                      <EmptyState icon={IoFolderOutline} title="No repositories found" description="Your GitHub account is connected, but no repositories were returned."/>
                     ) : (
                       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-5">
-                        {normalizedRepositories.map(
-                          (repo) => (
-                            <RepositoryCard
-                              key={repo.id}
-                              repo={repo}
-                              languageColors={
-                                languageColors
-                              }
-                            />
-                          )
-                        )}
+                        {normalizedRepositories.map( (repo) => ( <RepositoryCard key={repo.id} repo={repo} languageColors={ languageColors}/>))}
                       </div>
                     )}
                   </>
                 ) : (
-                  <GitHubLocked
-                    title="Connect GitHub to view repositories"
-                    description="Repository information belongs to your GitHub account. Connect GitHub to load your repositories into NOVA."
-                  />
+                  <GitHubLocked title="Connect GitHub to view repositories" description="Repository information belongs to your GitHub account. Connect GitHub to load your repositories into COSXIA."/>
                 )}
               </div>
             )}
 
-            {/* =================================================
-                PROJECTS
-            ================================================= */}
+            {/* PROJECTS */}
 
             {activeTab === "Projects" && (
               <div className="mt-5 space-y-5">
-                <SectionHeader
-                  icon={IoGitBranchOutline}
-                  title="NOVA Projects"
-                  subtitle="Your projects and security work inside NOVA."
-                />
-
+                <SectionHeader icon={IoGitBranchOutline} title="COSXIA Projects" subtitle="Your projects and security work inside COSXIA."/>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  <StatCard
-                    icon={IoFolderOutline}
-                    title="Projects"
-                    value={projects}
-                    description="NOVA projects"
-                  />
-
-                  <StatCard
-                    icon={IoDocumentTextOutline}
-                    title="Notebook"
-                    value={notebookPages}
-                    description="Notebook pages"
-                  />
-
-                  <StatCard
-                    icon={IoScanOutline}
-                    title="Scans"
-                    value={repositoriesScanned}
-                    description="Repositories scanned"
-                  />
+                  <StatCard icon={IoFolderOutline} title="Projects" value={projects} description="COSXIA projects"/>
+                  <StatCard icon={IoDocumentTextOutline} title="Notebook" value={notebookPages} description="Notebook pages" />
+                  <StatCard icon={IoScanOutline} title="Scans" value={repositoriesScanned} description="Repositories scanned"/>
                 </div>
 
                 <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
@@ -910,9 +861,7 @@ const Profile = () => {
                     </div>
 
                     <div>
-                      <h3 className="font-semibold">
-                        NOVA workspace
-                      </h3>
+                      <h3 className="font-semibold"> COSXIA workspace </h3>
 
                       <p className="text-sm text-gray-500 mt-1">
                         Your projects, analyses and notebook data are
@@ -924,17 +873,11 @@ const Profile = () => {
               </div>
             )}
 
-            {/* =================================================
-                ACTIVITY
-            ================================================= */}
+            {/* ACTIVITY */}
 
             {activeTab === "Activity" && (
               <div className="mt-5 space-y-5">
-                <SectionHeader
-                  icon={IoTimeOutline}
-                  title="Recent Activity"
-                  subtitle="Your latest activity inside NOVA."
-                />
+                <SectionHeader icon={IoTimeOutline} title="Recent Activity" subtitle="Your latest activity inside COSXIA."/>
 
                 {novaActivity.length > 0 ? (
                   <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 divide-y divide-gray-100">
@@ -956,11 +899,7 @@ const Profile = () => {
                     <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto">
                       <IoTimeOutline className="text-xl text-gray-500" />
                     </div>
-
-                    <h3 className="mt-4 font-medium">
-                      No NOVA activity yet
-                    </h3>
-
+                    <h3 className="mt-4 font-medium"> No activity yet  </h3>
                     <p className="text-sm text-gray-500 mt-2 max-w-md mx-auto">
                       Run a code analysis, scan a repository, or
                       create a notebook page and your activity will
@@ -972,31 +911,22 @@ const Profile = () => {
                 {/* GitHub activity lock */}
 
                 {!githubConnected ? (
-                  <GitHubLocked
-                    title="GitHub activity is locked"
-                    description="Connect GitHub to include commits, repository updates and other GitHub activity in your profile."
-                  />
+                  <GitHubLocked title="GitHub activity is locked" description="Connect GitHub to include commits, repository updates and other GitHub activity in your profile."/>
                 ) : (
                   <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
                         <IoLogoGithub />
                       </div>
-
                       <div>
-                        <h3 className="font-semibold">
-                          GitHub activity enabled
-                        </h3>
-
-                        <p className="text-xs text-gray-500 mt-1">
-                          Connected as @{githubUsername}
-                        </p>
+                        <h3 className="font-semibold"> GitHub activity enabled </h3>
+                        <p className="text-xs text-gray-500 mt-1"> Connected as @{githubUsername} </p>
                       </div>
                     </div>
 
                     <p className="text-sm text-gray-500 mt-5">
                       GitHub activity can now be combined with your
-                      NOVA security activity.
+                      COSXIA security activity.
                     </p>
                   </div>
                 )}
@@ -1009,27 +939,18 @@ const Profile = () => {
   );
 };
 
-/* ===========================================================
-   MINI STAT
-=========================================================== */
+/* MINI STAT */
 
 const MiniStat = ({ value, label }) => {
   return (
     <div className="rounded-xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 px-3 py-3 text-center">
-      <p className="font-semibold text-sm">
-        {value ?? 0}
-      </p>
-
-      <p className="text-[10px] text-gray-400 mt-1">
-        {label}
-      </p>
+      <p className="font-semibold text-sm"> {value ?? 0} </p>
+      <p className="text-[10px] text-gray-400 mt-1"> {label} </p>
     </div>
   );
 };
 
-/* ===========================================================
-   STAT CARD
-=========================================================== */
+/* STAT CARD */
 
 const StatCard = ({
   icon: Icon,
@@ -1041,17 +962,9 @@ const StatCard = ({
     <div className="rounded-2xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs text-gray-500">
-            {title}
-          </p>
-
-          <p className="text-2xl font-bold mt-2">
-            {value}
-          </p>
-
-          <p className="text-[11px] text-gray-400 mt-1">
-            {description}
-          </p>
+          <p className="text-xs text-gray-500"> {title} </p>
+          <p className="text-2xl font-bold mt-2"> {value} </p>
+          <p className="text-[11px] text-gray-400 mt-1"> {description} </p>
         </div>
 
         <div className="w-9 h-9 rounded-xl bg-purple-500/10 flex items-center justify-center">
@@ -1062,9 +975,7 @@ const StatCard = ({
   );
 };
 
-/* ===========================================================
-   SECTION HEADER
-=========================================================== */
+/* SECTION HEADER */
 
 const SectionHeader = ({
   icon: Icon,
@@ -1076,23 +987,15 @@ const SectionHeader = ({
       <div className="w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center">
         <Icon className="text-purple-600" />
       </div>
-
       <div>
-        <h2 className="text-lg font-semibold">
-          {title}
-        </h2>
-
-        <p className="text-xs text-gray-500 mt-1">
-          {subtitle}
-        </p>
+        <h2 className="text-lg font-semibold"> {title} </h2>
+        <p className="text-xs text-gray-500 mt-1"> {subtitle} </p>
       </div>
     </div>
   );
 };
 
-/* ===========================================================
-   MINI INFO
-=========================================================== */
+/* MINI INFO */
 
 const MiniInfo = ({
   icon: Icon,
@@ -1102,23 +1005,15 @@ const MiniInfo = ({
   return (
     <div className="rounded-xl bg-gray-50/80 border border-gray-200 px-4 py-3 flex items-center gap-3">
       <Icon className="text-gray-500" />
-
       <div>
-        <p className="text-[10px] text-gray-400">
-          {label}
-        </p>
-
-        <p className="text-sm font-medium mt-0.5">
-          {value}
-        </p>
+        <p className="text-[10px] text-gray-400"> {label} </p>
+        <p className="text-sm font-medium mt-0.5"> {value} </p>
       </div>
     </div>
   );
 };
 
-/* ===========================================================
-   REPOSITORY CARD
-=========================================================== */
+/* REPOSITORY CARD */
 
 const RepositoryCard = ({
   repo,
@@ -1130,68 +1025,28 @@ const RepositoryCard = ({
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <IoFolderOutline className="text-purple-600 shrink-0" />
-
-            <h3 className="font-semibold truncate">
-              {repo.name}
-            </h3>
-
+            <h3 className="font-semibold truncate"> {repo.name} </h3>
             {repo.private && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-yellow-500/10 text-amber-700 border border-yellow-500/10">
-                Private
-              </span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-yellow-500/10 text-amber-700 border border-yellow-500/10"> Private </span>
             )}
           </div>
-
-          <p className="text-sm text-gray-500 mt-3 leading-6 line-clamp-2 min-h-[48px]">
-            {repo.description}
-          </p>
+          <p className="text-sm text-gray-500 mt-3 leading-6 line-clamp-2 min-h-[48px]"> {repo.description} </p>
         </div>
-
-        <a
-          href={repo.html_url}
-          target="_blank"
-          rel="noreferrer"
-          className="shrink-0 w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition"
-        >
+        <a href={repo.html_url} target="_blank" rel="noreferrer" className="shrink-0 w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition" >
           <IoChevronForwardOutline />
         </a>
       </div>
-
       <div className="flex items-center gap-4 mt-5 text-xs text-gray-500">
-        <span className="flex items-center gap-1.5">
-          <span
-            className={`w-2.5 h-2.5 rounded-full ${
-              languageColors[
-                repo.language
-              ] || "bg-gray-500"
-            }`}
-          />
-
-          {repo.language}
-        </span>
-
-        <span className="flex items-center gap-1">
-          <IoStarOutline />
-          {repo.stars}
-        </span>
-
-        <span className="flex items-center gap-1">
-          <IoGitBranchOutline />
-          {repo.forks}
-        </span>
+          <span className="flex items-center gap-1.5">
+          <span className={`w-2.5 h-2.5 rounded-full ${ languageColors[ repo.language ] || "bg-gray-500" }`}/> {repo.language} </span>
+          <span className="flex items-center gap-1"><IoStarOutline /> {repo.stars} </span>
+          <span className="flex items-center gap-1"><IoGitBranchOutline /> {repo.forks} </span>
       </div>
 
       {repo.topics?.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mt-4">
-          {repo.topics
-            .slice(0, 5)
-            .map((topic) => (
-              <span
-                key={topic}
-                className="text-[10px] px-2 py-1 rounded-full bg-purple-500/10 text-purple-600"
-              >
-                {topic}
-              </span>
+          {repo.topics .slice(0, 5) .map((topic) => (
+              <span key={topic} className="text-[10px] px-2 py-1 rounded-full bg-purple-500/10 text-purple-600"> {topic} </span>
             ))}
         </div>
       )}
@@ -1199,9 +1054,7 @@ const RepositoryCard = ({
   );
 };
 
-/* ===========================================================
-   GITHUB LOCKED
-=========================================================== */
+/* GITHUB LOCKED */
 
 const GitHubLocked = ({
   title,
@@ -1210,38 +1063,21 @@ const GitHubLocked = ({
   return (
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-500/[0.08] to-blue-500/[0.05] border border-gray-200 p-8 mt-5">
       <div className="absolute -right-20 -top-20 w-60 h-60 rounded-full bg-purple-500/10 blur-[100px]" />
-
       <div className="relative max-w-2xl">
         <div className="w-12 h-12 rounded-2xl bg-gray-100 border border-gray-200 flex items-center justify-center">
           <IoLogoGithub className="text-xl text-gray-700" />
         </div>
-
-        <h3 className="text-lg font-semibold mt-5">
-          {title}
-        </h3>
-
-        <p className="text-sm text-gray-500 mt-2 leading-6">
-          {description}
-        </p>
-
-        <NavLink
-          to="/SingIn"
-          className="inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 text-white shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25 hover:-translate-y-0.5 transition text-sm font-medium"
-        >
-          <IoLogoGithub />
-
-          Connect GitHub
-
-          <IoChevronForwardOutline />
+        <h3 className="text-lg font-semibold mt-5"> {title} </h3>
+        <p className="text-sm text-gray-500 mt-2 leading-6"> {description} </p>
+        <NavLink to="/SingIn" className="inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-xl bg-gray-800 text-white shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25 hover:-translate-y-0.5 transition text-sm font-medium" >
+          <IoLogoGithub /> Connect GitHub <IoChevronForwardOutline />
         </NavLink>
       </div>
     </div>
   );
 };
 
-/* ===========================================================
-   EMPTY STATE
-=========================================================== */
+/* EMPTY STATE */
 
 const EmptyState = ({
   icon: Icon,
@@ -1253,21 +1089,13 @@ const EmptyState = ({
       <div className="w-12 h-12 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center">
         <Icon className="text-xl text-gray-500" />
       </div>
-
-      <h3 className="font-medium mt-4">
-        {title}
-      </h3>
-
-      <p className="text-sm text-gray-500 mt-2">
-        {description}
-      </p>
+      <h3 className="font-medium mt-4"> {title} </h3>
+      <p className="text-sm text-gray-500 mt-2"> {description} </p>
     </div>
   );
 };
 
-/* ===========================================================
-   ACTIVITY ITEM
-=========================================================== */
+/* ACTIVITY ITEM */
 
 const ActivityItem = ({
   activity,
@@ -1277,7 +1105,7 @@ const ActivityItem = ({
     activity.name ||
     activity.action ||
     activity.type ||
-    "NOVA activity";
+    "COSXIA activity";
 
   const description =
     activity.description ||
@@ -1300,30 +1128,16 @@ const ActivityItem = ({
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-          <h3 className="text-sm font-medium">
-            {title}
-          </h3>
-
-          {date && (
-            <span className="text-[10px] text-gray-400">
-              {formatActivityDate(date)}
-            </span>
-          )}
+          <h3 className="text-sm font-medium"> {title} </h3>
+          {date && ( <span className="text-[10px] text-gray-400"> {formatActivityDate(date)} </span> )}
         </div>
-
-        {description && (
-          <p className="text-xs text-gray-500 mt-1 leading-5">
-            {description}
-          </p>
-        )}
+        {description && ( <p className="text-xs text-gray-500 mt-1 leading-5"> {description} </p>)}
       </div>
     </div>
   );
 };
 
-/* ===========================================================
-   DATE FORMATTER
-=========================================================== */
+/* DATE FORMATTER */
 
 const formatActivityDate = (value) => {
   try {

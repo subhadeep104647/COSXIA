@@ -24,6 +24,8 @@ import Edit_Profile from "./pages2.o/Edit_Profile";
 import NewChat from "./pages2.o/NewChat";
 import Analysis from "./pages2.o/Analysis";
 import Notebook from "./pages2.o/Notebook";
+import Account from "./pages2.o/Account";
+import Profile_Information from "./pages2.o/Profile_Information";
 
 
 // =====================================================
@@ -73,6 +75,8 @@ const App = () => {
     "/Edit_Profile",
     "/Analysis",
     "/Notebook",
+    "/Account",
+    "/Profile_Information",
   ];
 
 
@@ -260,6 +264,24 @@ const App = () => {
           element={
             <ProtectedRoute isAuth={isAuth}>
               <Notebook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/Account"
+          element={
+            <ProtectedRoute isAuth={isAuth}>
+              <Account/>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/Profile_Information.jsx"
+          element={
+            <ProtectedRoute isAuth={isAuth}>
+              <Profile_Information.jsx />
             </ProtectedRoute>
           }
         />
