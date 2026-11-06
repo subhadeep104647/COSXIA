@@ -17,12 +17,14 @@ const Sidebar = () => {
   useEffect(() => {
     const checkScreen = () => {
       const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      if (mobile) {
-        setIsOpen(false);
-      } else {
-        setIsOpen(true);
-      }
+
+      setIsMobile((previousMobile) => {
+        if (previousMobile !== mobile) {
+          setIsOpen(!mobile);
+        }
+
+        return mobile;
+      });
     };
 
     checkScreen();
@@ -123,6 +125,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const width = isMobile ? "0px" : isOpen ? "260px" : "72px";
+
     document.documentElement.style.setProperty(
       "--nova-sidebar-width",
       width
@@ -206,7 +209,7 @@ const Sidebar = () => {
       {/* MOBILE OPEN BUTTON */}
 
       {isMobile && !isOpen && (
-        <button onClick={() => setIsOpen(true)} className=" fixed top-4 left-4 z-[100] w-10 h-10 flex items-center justify-center rounded-xl bg-white/95 backdrop-blur-2xl text-gray-700 hover:bg-white/[0.08] hover:text-white transition-all duration-300">
+        <button onClick={() => setIsOpen(true)} className=" fixed top-4 left-4 z-[100] w-10 h-10 flex items-center justify-center rounded-xl bg-white/95 backdrop-blur-2xl text-gray-700 hover:bg-white/[0.08] hover:text-black transition-all duration-300">
           <IoMenuOutline className="text-xl" />
         </button>
       )}
@@ -214,12 +217,12 @@ const Sidebar = () => {
       {/* MOBILE BACKDROP */}
 
       {isMobile && isOpen && (
-        <div onClick={() => setIsOpen(false)} className=" fixed inset-0 z-[80] bg-gray-900/10 backdrop-blur-[2px] "/>
+        <div onClick={() => setIsOpen(false)} className=" fixed inset-0 z-[80] bg-white backdrop-blur-[2px] "/>
       )}
 
       {/* SIDEBAR */}
 
-      <aside className={` fixed left-0 top-0 bottom-0 z-[90] flex flex-col bg-white/95 backdrop-blur-3xl backdrop-saturate-150 text-gray-900 shadow-[10px_0_50px_rgba(0,0,0,0.25)] overflow-hidden transition-all duration-300 ease-in-out
+      <aside className={` fixed left-0 top-0 bottom-0 z-[90] flex flex-col bg-white/95 backdrop-blur-3xl backdrop-saturate-150 text-gray-900 border border-gray-400/20 overflow-hidden transition-all duration-300 ease-in-out
           ${ isMobile ? isOpen ? "translate-x-0 w-[260px]" : "-translate-x-full w-[260px]" : isOpen ? "translate-x-0 w-[260px]" : "translate-x-0 w-[72px]" }`}>
 
         {/* TOP HEADER */}
@@ -238,14 +241,14 @@ const Sidebar = () => {
 
           {!isMobile && (
 
-            <button onClick= {() => setIsOpen((prev) => !prev)} title={ isOpen ? "Collapse sidebar" : "Open sidebar" } className=" w-9 h-9 shrink-0 flex items-center justify-center rounded-xl bg-white/[0.04] backdrop-blur-xl text-gray-400 hover:bg-white/[0.08] hover:text-white transition-all duration-300 ">
+            <button onClick= {() => setIsOpen((prev) => !prev)} title={ isOpen ? "Collapse sidebar" : "Open sidebar" } className=" w-9 h-9 shrink-0 flex items-center justify-center rounded-xl bg-white/[0.04] backdrop-blur-xl text-gray-600 hover:bg-white/[0.08] hover:text-black transition-all duration-300 ">
               <IoMenuOutline className="text-xl" />
             </button> )}
 
           {/* MOBILE CLOSE */}
 
           {isMobile && isOpen && (
-            <button onClick={() => setIsOpen(false)} className=" w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.04] text-gray-400 hover:bg-white/[0.08] hover:text-white transition-all">
+            <button onClick={() => setIsOpen(false)} className=" w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.04] text-gray-700 hover:bg-white/[0.08] hover:text-black transition-all">
               <IoCloseOutline className="text-xl" />
             </button> )}
 

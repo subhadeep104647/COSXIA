@@ -649,69 +649,14 @@ function login(username, password) {
                             <h4 className="text-sm text-gray-800"> {item.title || "Security Vulnerability"} </h4>
                             {item.line && ( <p className=" text-[10px] text-gray-400 mt-1 "> Line {item.line} </p> )}
                           </div>
-                          <span
-                            className="
-                              text-[10px]
-                              text-red-400
-                              bg-red-500/10
-                              border
-                              border-red-500/20
-                              px-2
-                              py-1
-                              rounded-md
-                              whitespace-nowrap
-                            "
-                          >
-                            {item.severity ||
-                              "Unknown"}
-                          </span>
+                          <span className=" text-[10px] text-red-40 bg-red-500/10 border border-red-500/20 px-2 py-1 rounded-md whitespace-nowrap"> {item.severity || "Unknown"} </span>
                         </div>
 
-                        {item.description && (
-                          <p
-                            className="
-                              text-xs
-                              text-gray-500
-                              leading-5
-                              mt-3
-                            "
-                          >
-                            {item.description}
-                          </p>
-                        )}
-
+                        {item.description && ( <p className=" text-xs text-gray-500 leading-5 mt-3"> {item.description} </p> )}
                         {item.recommendation && (
-                          <div
-                            className="
-                              mt-3
-                              p-3
-                              rounded-lg
-                              bg-purple-500/[0.04]
-                              border
-                              border-purple-500/10
-                            "
-                          >
-                            <p
-                              className="
-                                text-[10px]
-                                text-purple-400
-                                mb-1
-                              "
-                            >
-                              Recommendation
-                            </p>
-
-                            <p
-                              className="
-                                text-xs
-                                text-gray-400
-                                leading-5
-                              "
-                            >
-                              {
-                                item.recommendation
-                              }
-                            </p>
+                          <div className=" mt-3 p-3 rounded-lg bg-purple-500/[0.04] border border-purple-500/10">
+                            <p className=" text-[10px] text-purple-400 mb-1"> Recommendation </p>
+                            <p className=" text-xs text-gray-400 leading-5"> { item.recommendation } </p>
                           </div>
                         )}
                       </div>
@@ -720,99 +665,27 @@ function login(username, password) {
 
                 {/* SUGGESTED FIX */}
                 {result.suggestedFix && (
-                  <div
-                    className="
-                      rounded-xl
-                      border
-                      border-emerald-500/10
-                      bg-emerald-500/[0.03]
-                      p-4
-                    "
-                  >
+                  <div className=" rounded-xl border border-emerald-500/10 bg-emerald-500/[0.03] p-4">
                     <div className="flex items-center gap-2 mb-3">
-
-                      <CheckCircle2
-                        size={15}
-                        className="text-emerald-400"
-                      />
-
-                      <span className="text-xs text-emerald-400">
-                        Suggested Fix
-                      </span>
+                      <CheckCircle2 size={15} className="text-emerald-400" />
+                      <span className="text-xs text-emerald-400"> Suggested Fix </span>
                     </div>
-
-                    <pre
-                      className="
-                        text-xs
-                        text-gray-400
-                        whitespace-pre-wrap
-                        overflow-x-auto
-                        font-mono
-                        leading-5
-                      "
-                    >
-                      {result.suggestedFix}
-                    </pre>
+                    <pre className=" text-xs text-gray-400 whitespace-pre-wrap overflow-x-auto font-mono leading-5"> {result.suggestedFix} </pre>
                   </div>
                 )}
 
                 {/* SECURE CODE */}
                 {result.secureCode && (
-                  <div
-                    className="
-                      rounded-xl
-                      border
-                      border-gray-200
-                      bg-gray-50
-                      p-4
-                    "
-                  >
-                    <p
-                      className="
-                        text-xs
-                        text-gray-500
-                        mb-3
-                      "
-                    >
-                      Secure Code
-                    </p>
-
-                    <pre
-                      className="
-                        text-xs
-                        text-gray-400
-                        whitespace-pre-wrap
-                        overflow-x-auto
-                        font-mono
-                        leading-5
-                      "
-                    >
-                      {result.secureCode}
-                    </pre>
+                  <div className=" rounded-xl border border-gray-200 bg-gray-50 p-4">
+                    <p className=" text-xs text-gray-500 mb-3"> Secure Code </p>
+                    <pre className=" text-xs text-gray-400 whitespace-pre-wrap overflow-x-auto font-mono leading-5"> {result.secureCode} </pre>
                   </div>
                 )}
 
                 {/* PLAIN TEXT RESPONSE */}
                 {result.message && (
-                  <div
-                    className="
-                      rounded-xl
-                      border
-                      border-gray-200
-                      bg-gray-50
-                      p-4
-                    "
-                  >
-                    <p
-                      className="
-                        text-xs
-                        text-gray-400
-                        leading-6
-                        whitespace-pre-wrap
-                      "
-                    >
-                      {result.message}
-                    </p>
+                  <div className=" rounded-xl border border-gray-200 bg-gray-50 p-4">
+                    <p className=" text-xs text-gray-400 leading-6 whitespace-pre-wrap"> {result.message} </p>
                   </div>
                 )}
               </div>

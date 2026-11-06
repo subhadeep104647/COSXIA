@@ -3,6 +3,10 @@ import {
   NotebookPen,
   UserRoundPen,
   Link2,
+  UserRound,
+  Camera,
+  Settings,
+  BookUser,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -20,7 +24,6 @@ const Edit_Profile = () => {
 
   const fileInputRef = useRef(null);
 
-  // Load previously saved profile
   useEffect(() => {
     const savedProfile = localStorage.getItem("nova-profile");
 
@@ -47,18 +50,18 @@ const Edit_Profile = () => {
 
     if (!file) return;
 
-    const preview = URL.createObjectURL(file);
+    if (image?.startsWith("blob:")) {
+      URL.revokeObjectURL(image);
+    }
 
-    setImage((oldImage) => {
-      if (oldImage?.startsWith("blob:")) {
-        URL.revokeObjectURL(oldImage);
-      }
-
-      return preview;
-    });
+    setImage(URL.createObjectURL(file));
   };
 
   const handleRemove = () => {
+    if (image?.startsWith("blob:")) {
+      URL.revokeObjectURL(image);
+    }
+
     setImage("/User.jpeg");
 
     if (fileInputRef.current) {
@@ -78,12 +81,8 @@ const Edit_Profile = () => {
       image,
     };
 
-    localStorage.setItem(
-      "nova-profile",
-      JSON.stringify(profileData)
-    );
+    localStorage.setItem("nova-profile", JSON.stringify(profileData));
 
-    // Notify other components such as Profile page
     window.dispatchEvent(
       new CustomEvent("nova:profile-updated", {
         detail: profileData,
@@ -91,213 +90,325 @@ const Edit_Profile = () => {
     );
   };
 
+  const inputClass =
+    "w-full rounded-md border border-[#d1d9e0] bg-white px-3 py-[7px] text-sm text-[#1f2328] shadow-sm outline-none transition focus:border-[#0969da] focus:ring-[3px] focus:ring-[#0969da]/15 placeholder:text-[#9198a1]";
+
+  const labelClass =
+    "mb-2 block text-sm font-semibold text-[#1f2328]";
+
   return (
-    <div className="min-h-screen w-full bg-black text-white px-5 sm:px-8 lg:px-10 py-10">
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-10">
+    <div className="min-h-screen w-full bg-white text-[#1f2328]">
 
-        {/* ================= PROFILE IMAGE ================= */}
-        <div className="w-full lg:w-1/4 flex flex-col items-center gap-5 lg:pt-5">
-
-          <div>
-            <img
-              src={image}
-              alt="Profile"
-              className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-cover border-2 border-gray-600 rounded-full"
-            />
+      {/* PAGE HEADER */}
+      <div className="border-b border-[#d1d9e0] bg-[#f6f8fa]">
+        <div className="mx-auto max-w-[1280px] px-5 py-6 sm:px-8">
+          <div className="flex items-center gap-2 text-sm text-[#59636e]">
+            <Settings size={16} />
+            <span>Settings</span>
+            <span>/</span>
+            <span className="font-semibold text-[#1f2328]">
+              Public profile
+            </span>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
+          <h1 className="mt-3 text-2xl font-semibold tracking-tight">
+            Profile settings
+          </h1>
 
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              onChange={handleImageChange}
-              className="hidden"
-            />
-
-            <div className="flex gap-3">
-
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="px-4 py-2 bg-gray-900 text-white rounded-md text-sm border border-gray-700 hover:bg-gray-800 transition"
-              >
-                Upload new
-              </button>
-
-              <button
-                type="button"
-                onClick={handleRemove}
-                className="px-4 py-2 border border-gray-600 text-gray-300 rounded-md text-sm hover:bg-gray-900 transition"
-              >
-                Remove
-              </button>
-
-            </div>
-          </div>
+          <p className="mt-1 text-sm text-[#59636e]">
+            Manage your public profile information.
+          </p>
         </div>
+      </div>
 
-        {/* ================= PROFILE FORM ================= */}
-        <div className="w-full lg:w-3/4 flex flex-col items-start gap-4">
+      {/* MAIN LAYOUT */}
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[230px_minmax(0,1fr)]">
 
-          {/* USERNAME */}
-          <div className="flex flex-row items-center gap-3 w-full">
+        {/* LEFT SETTINGS SIDEBAR */}
+        <aside className="space-y-1">
 
-            <div className="shrink-0">
-              <UserRoundPen
-                color="#ffffff"
-                strokeWidth={1.25}
-              />
-            </div>
+          <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wide text-[#59636e]">
+            Personal settings
+          </p>
 
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter Username"
-              className="px-4 py-2 text-gray-300 bg-gray-900 font-normal text-lg tracking-wide border border-gray-600 rounded-xl w-full max-w-2xl outline-none focus:border-purple-500 transition"
-            />
-
+          <div className="flex items-center gap-3 rounded-md border-l-2 border-[#0969da] bg-[#ddf4ff] px-3 py-2.5 text-sm font-semibold text-[#0969da]">
+            <UserRound size={17} />
+            Public profile
           </div>
 
-          {/* EMAIL */}
-          <div className="flex flex-row items-center gap-3 w-full">
-
-            <div className="shrink-0">
-              <UserRoundPen
-                color="#ffffff"
-                strokeWidth={1.25}
-              />
-            </div>
-
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter Mail ID"
-              className="px-4 py-2 text-gray-300 bg-gray-900 font-normal text-lg tracking-wide border border-gray-600 rounded-xl w-full max-w-2xl outline-none focus:border-purple-500 transition"
-            />
-
+          <div className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-[#59636e]">
+            <Settings size={17} />
+            Account
           </div>
 
-          {/* BIO */}
-          <div className="flex flex-row items-start gap-3 w-full">
-
-            <div className="shrink-0 mt-3">
-              <NotebookPen
-                color="#ffffff"
-                strokeWidth={1.25}
-              />
-            </div>
-
-            <textarea
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              placeholder="Enter Your Bio..."
-              rows="4"
-              className="bg-gray-900 px-5 py-3 font-normal text-lg tracking-wide border border-gray-600 rounded-xl w-full max-w-2xl text-gray-300 outline-none focus:border-purple-500 transition resize-none"
-            />
-
+          <div className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-[#59636e]">
+            <BookUser size={17} />
+            Profile information
           </div>
 
-          {/* PRONOUNS */}
-          <div className="flex flex-row items-center gap-3 bg-gray-900 px-4 py-2 border border-gray-600 rounded-xl w-full max-w-2xl">
+          <div className="my-4 border-t border-[#d1d9e0]" />
 
-            <label
-              htmlFor="pronouns"
-              className="text-gray-400 font-normal text-lg tracking-wide"
-            >
-              Pronouns :
-            </label>
+          <p className="px-3 text-xs font-semibold uppercase tracking-wide text-[#59636e]">
+            NOVA
+          </p>
 
-            <select
-              id="pronouns"
-              value={pronouns}
-              onChange={(e) => setPronouns(e.target.value)}
-              className="bg-gray-900 text-gray-300 w-40 font-normal text-lg outline-none cursor-pointer"
-            >
-              <option>Don't Specify</option>
-              <option>They/Them</option>
-              <option>She/Her</option>
-              <option>He/Him</option>
-              <option>Custom</option>
-            </select>
-
-          </div>
-
-          {/* URL 1 */}
-          <div className="flex flex-row items-center gap-3 w-full">
-
-            <div className="shrink-0">
-              <Link2
-                color="#ffffff"
-                strokeWidth={1.25}
-              />
-            </div>
-
-            <input
-              type="url"
-              value={url1}
-              onChange={(e) => setUrl1(e.target.value)}
-              placeholder="Enter URL 1"
-              className="px-4 py-2 text-gray-300 bg-gray-900 font-normal text-lg tracking-wide border border-gray-600 rounded-xl w-full max-w-2xl outline-none focus:border-purple-500 transition"
-            />
-
-          </div>
-
-          {/* URL 2 */}
-          <div className="flex flex-row items-center gap-3 w-full">
-
-            <div className="shrink-0">
-              <Link2
-                color="#ffffff"
-                strokeWidth={1.25}
-              />
-            </div>
-
-            <input
-              type="url"
-              value={url2}
-              onChange={(e) => setUrl2(e.target.value)}
-              placeholder="Enter URL 2"
-              className="px-4 py-2 text-gray-300 bg-gray-900 font-normal text-lg tracking-wide border border-gray-600 rounded-xl w-full max-w-2xl outline-none focus:border-purple-500 transition"
-            />
-
-          </div>
-
-          {/* URL 3 */}
-          <div className="flex flex-row items-center gap-3 w-full">
-
-            <div className="shrink-0">
-              <Link2
-                color="#ffffff"
-                strokeWidth={1.25}
-              />
-            </div>
-
-            <input
-              type="url"
-              value={url3}
-              onChange={(e) => setUrl3(e.target.value)}
-              placeholder="Enter URL 3"
-              className="px-4 py-2 text-gray-300 bg-gray-900 font-normal text-lg tracking-wide border border-gray-600 rounded-xl w-full max-w-2xl outline-none focus:border-purple-500 transition"
-            />
-
-          </div>
-
-          {/* SAVE BUTTON */}
           <Link
             to="/Profile"
-            onClick={handleSave}
-            className="bg-green-600 border border-white rounded-xl text-white py-2 px-6 tracking-wide mt-3 hover:bg-green-700 transition"
+            className="mt-2 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-[#59636e] transition hover:bg-[#f6f8fa] hover:text-[#1f2328]"
           >
-            <span className="font-medium text-lg tracking-wide">
-              Save
-            </span>
+            <UserRound size={17} />
+            View profile
           </Link>
 
-        </div>
+        </aside>
+
+        {/* RIGHT CONTENT */}
+        <main className="min-w-0">
+
+          {/* PUBLIC PROFILE */}
+          <section className="border-b border-[#d1d9e0] pb-6">
+
+            <h2 className="text-xl font-semibold">
+              Public profile
+            </h2>
+
+            <p className="mt-1 text-sm text-[#59636e]">
+              This information will be displayed on your NOVA profile.
+            </p>
+
+            {/* AVATAR */}
+            <div className="mt-7 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+
+              <div className="flex items-start gap-4">
+
+                <img
+                  src={image}
+                  alt="Profile"
+                  className="h-24 w-24 rounded-full border border-[#d1d9e0] object-cover"
+                />
+
+                <div className="pt-1">
+                  <h3 className="text-sm font-semibold">
+                    Profile picture
+                  </h3>
+
+                  <p className="mt-1 text-xs leading-relaxed text-[#59636e]">
+                    Your profile picture helps others recognize you.
+                  </p>
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+
+                  <div className="mt-3 flex flex-wrap gap-2">
+
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="flex items-center gap-2 rounded-md border border-[#d1d9e0] bg-[#f6f8fa] px-3 py-1.5 text-xs font-medium shadow-sm transition hover:bg-[#eef1f4]"
+                    >
+                      <Camera size={14} />
+                      Upload new
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleRemove}
+                      className="rounded-md border border-[#d1d9e0] bg-white px-3 py-1.5 text-xs font-medium text-[#cf222e] transition hover:bg-[#fff1f0]"
+                    >
+                      Remove
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* PROFILE DETAILS */}
+          <section className="border-b border-[#d1d9e0] py-7">
+
+            <h2 className="text-base font-semibold">
+              Profile information
+            </h2>
+
+            <p className="mt-1 text-sm text-[#59636e]">
+              Update your personal details.
+            </p>
+
+            <div className="mt-6 grid max-w-2xl grid-cols-1 gap-5">
+
+              {/* USERNAME */}
+              <div>
+                <label className={labelClass}>
+                  Username
+                </label>
+
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter Username"
+                  className={inputClass}
+                />
+              </div>
+
+              {/* EMAIL */}
+              <div>
+                <label className={labelClass}>
+                  Email address
+                </label>
+
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter Mail ID"
+                  className={inputClass}
+                />
+              </div>
+
+              {/* BIO */}
+              <div>
+                <label className={labelClass}>
+                  Bio
+                </label>
+
+                <textarea
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                  placeholder="Enter Your Bio..."
+                  rows={4}
+                  className={`${inputClass} resize-y`}
+                />
+
+                <p className="mt-1.5 text-xs text-[#59636e]">
+                  Tell people a little about yourself.
+                </p>
+              </div>
+
+              {/* PRONOUNS */}
+              <div>
+                <label className={labelClass}>
+                  Pronouns
+                </label>
+
+                <select
+                  id="pronouns"
+                  value={pronouns}
+                  onChange={(e) => setPronouns(e.target.value)}
+                  className={`${inputClass} max-w-sm cursor-pointer`}
+                >
+                  <option>Don't Specify</option>
+                  <option>They/Them</option>
+                  <option>She/Her</option>
+                  <option>He/Him</option>
+                  <option>Custom</option>
+                </select>
+              </div>
+
+            </div>
+          </section>
+
+          {/* SOCIAL LINKS */}
+          <section className="border-b border-[#d1d9e0] py-7">
+
+            <h2 className="text-base font-semibold">
+              Social accounts
+            </h2>
+
+            <p className="mt-1 text-sm text-[#59636e]">
+              Add links to your websites and social profiles.
+            </p>
+
+            <div className="mt-6 grid max-w-2xl grid-cols-1 gap-5">
+
+              <div>
+                <label className={labelClass}>
+                  <span className="flex items-center gap-2">
+                    <Link2 size={15} className="text-[#59636e]" />
+                    Website / Social URL 1
+                  </span>
+                </label>
+
+                <input
+                  type="url"
+                  value={url1}
+                  onChange={(e) => setUrl1(e.target.value)}
+                  placeholder="https://example.com"
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  <span className="flex items-center gap-2">
+                    <Link2 size={15} className="text-[#59636e]" />
+                    Website / Social URL 2
+                  </span>
+                </label>
+
+                <input
+                  type="url"
+                  value={url2}
+                  onChange={(e) => setUrl2(e.target.value)}
+                  placeholder="https://example.com"
+                  className={inputClass}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  <span className="flex items-center gap-2">
+                    <Link2 size={15} className="text-[#59636e]" />
+                    Website / Social URL 3
+                  </span>
+                </label>
+
+                <input
+                  type="url"
+                  value={url3}
+                  onChange={(e) => setUrl3(e.target.value)}
+                  placeholder="https://example.com"
+                  className={inputClass}
+                />
+              </div>
+
+            </div>
+          </section>
+
+          {/* SAVE */}
+          <div className="flex flex-col-reverse items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
+
+            <p className="text-xs text-[#59636e]">
+              Changes will be reflected on your NOVA profile.
+            </p>
+
+            <div className="flex gap-2">
+
+              <Link
+                to="/Profile"
+                className="rounded-md border border-[#d1d9e0] bg-[#f6f8fa] px-4 py-2 text-sm font-medium shadow-sm transition hover:bg-[#eef1f4]"
+              >
+                Cancel
+              </Link>
+
+              <Link
+                to="/Profile"
+                onClick={handleSave}
+                className="rounded-md border border-[#1f883d] bg-[#1f883d] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1a7f37]"
+              >
+                Save changes
+              </Link>
+
+            </div>
+          </div>
+
+        </main>
       </div>
     </div>
   );
