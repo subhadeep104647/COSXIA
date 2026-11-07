@@ -240,22 +240,7 @@ const NewChat = () => {
   // RENDER
   
   return (
-    <main
-      className="
-        min-h-screen
-        w-full
-        bg-white
-        text-gray-900
-        overflow-x-hidden
-        md:ml-[var(--nova-sidebar-width)]
-        md:w-[calc(100%-var(--nova-sidebar-width))]
-      "
-    >
-      {/* BACKGROUND */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className=" absolute top-[-250px] left-[30%] w-[500px] h-[500px] bg-purple-500/[0.08] blur-[150px] rounded-full "/>
-        <div className=" absolute bottom-[-250px] right-[10%] w-[500px] h-[500px] bg-cyan-500/[0.06] blur-[150px] rounded-full "/>
-      </div>
+    <main className=" min-h-screen w-full bg-white text-gray-900 overflow-x-hidden md:ml-[var(--nova-sidebar-width)] md:w-[calc(100%-var(--nova-sidebar-width))]">
 
       {/* CONTENT */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-6">
@@ -373,7 +358,7 @@ function login(username, password) {
                   </label>
 
                   {/* ANALYZE */}
-                  <button onClick={handleAnalyze} disabled={loading} className=" flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 to-nav text-white text-xs font-medium shadow-[0_0_25px_rgba(139,92,246,0.2)] hover:shadow-[0_0_35px_rgba(139,92,246,0.35)] hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all ">
+                  <button onClick={handleAnalyze} disabled={loading} className=" flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gray-900 to-nav text-white text-xs font-medium hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all ">
                     {loading ? (
                       <> <Loader2 size={14} className="animate-spin" /> Analyzing </>
                     ) : (

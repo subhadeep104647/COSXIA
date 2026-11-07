@@ -507,9 +507,9 @@ const Profile = () => {
       {/* BACKGROUND */}
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-purple-500/[0.055] blur-[150px] rounded-full" />
-        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-cyan-500/[0.045] blur-[150px] rounded-full" />
-        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-indigo-500/[0.04] blur-[150px] rounded-full" />
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-white blur-[150px] rounded-full" />
+        <div className="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-white blur-[150px] rounded-full" />
+        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-white blur-[150px] rounded-full" />
       </div>
 
       {/* PAGE */}
@@ -520,7 +520,7 @@ const Profile = () => {
           <div>
             <div className="flex items-center gap-3">
               {githubConnected && (
-                <span className="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs"> GitHub Connecte </span>
+                <span className="px-2.5 py-1 rounded-full bg-white border border-emerald-200 text-emerald-700 text-xs"> GitHub Connecte </span>
               )}
             </div>
           </div>
@@ -532,12 +532,12 @@ const Profile = () => {
           {/* LEFT PROFILE CARD */}
 
           <aside className="space-y-5">
-            <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 backdrop-blur-xl p-6">
+            <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 backdrop-blur-xl p-6">
               {/* Avatar */}
 
               <div className="flex justify-center">
                 <div className="relative">
-                  <div className="w-28 h-28 rounded-full overflow-hidden border border-gray-200 bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center">
+                  <div className="w-28 h-28 rounded-full overflow-hidden border border-gray-200 bg-gray-400/10 flex items-center justify-center">
                     {displayAvatar ? (
                       <img src={displayAvatar} alt={displayName} className="w-full h-full object-cover"/>
                     ) : (
@@ -626,7 +626,7 @@ const Profile = () => {
 
             {/* PROFILE COMPLETION */}
 
-            <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 backdrop-blur-xl p-5">
+            <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 backdrop-blur-xl p-5">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium"> Profile completion </p>
@@ -664,7 +664,7 @@ const Profile = () => {
                   {githubError && (
                     <p className="text-xs text-amber-700 mt-3"> {githubError} </p>
                   )}
-                  <NavLink to="/SingIn" className="mt-5 w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-800 text-white shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25 hover:-translate-y-0.5 transition text-sm font-medium">
+                  <NavLink to="/SingIn" className="mt-5 w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-800 text-white hover:-translate-y-0.5 transition text-sm font-medium">
                     <IoLogoGithub /> Connect GitHub <IoChevronForwardOutline />
                   </NavLink>
                 </div>
@@ -674,7 +674,7 @@ const Profile = () => {
             {/* CONNECTED GITHUB CARD */}
 
             {githubConnected && (
-              <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-5">
+              <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-5">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
                     <IoCheckmarkCircleOutline className="text-green-600" />
@@ -733,7 +733,7 @@ const Profile = () => {
 
                 {/* Security + Fixes */}
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-                  <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
+                  <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-6">
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="text-sm font-semibold"> Security posture </p>
@@ -757,7 +757,7 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
+                  <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-6">
                     <div className="flex items-start justify-between">
                       <div>
                         <p className="text-sm font-semibold"> Suggested fixes </p>
@@ -779,7 +779,7 @@ const Profile = () => {
 
                 {/* GitHub section only when connected */}
                 {githubConnected ? (
-                  <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
+                  <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-6">
                     <SectionHeader icon={IoLogoGithub} title="GitHub Overview" subtitle="Your connected GitHub account."/>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
                       <StatCard icon={IoFolderOutline} title="Public Repos" value={githubPublicRepos} description="Public repositories"/>
@@ -814,7 +814,7 @@ const Profile = () => {
                         </div>
                       </div>
 
-                      <NavLink to="/SingIn" className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gray-800 text-white shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25 hover:-translate-y-0.5 transition text-sm font-medium">
+                      <NavLink to="/SingIn" className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gray-800 text-white hover:-translate-y-0.5 transition text-sm font-medium">
                         <IoLogoGithub /> Connect GitHub <IoChevronForwardOutline />
                       </NavLink>
                     </div>
@@ -854,7 +854,7 @@ const Profile = () => {
                   <StatCard icon={IoScanOutline} title="Scans" value={repositoriesScanned} description="Repositories scanned"/>
                 </div>
 
-                <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
+                <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-6">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
                       <IoSparklesOutline className="text-purple-600 text-xl" />
@@ -880,7 +880,7 @@ const Profile = () => {
                 <SectionHeader icon={IoTimeOutline} title="Recent Activity" subtitle="Your latest activity inside COSXIA."/>
 
                 {novaActivity.length > 0 ? (
-                  <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 divide-y divide-gray-100">
+                  <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 divide-y divide-gray-100">
                     {novaActivity.map(
                       (activity, index) => (
                         <ActivityItem
@@ -895,7 +895,7 @@ const Profile = () => {
                     )}
                   </div>
                 ) : (
-                  <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-8 text-center">
+                  <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-8 text-center">
                     <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto">
                       <IoTimeOutline className="text-xl text-gray-500" />
                     </div>
@@ -913,7 +913,7 @@ const Profile = () => {
                 {!githubConnected ? (
                   <GitHubLocked title="GitHub activity is locked" description="Connect GitHub to include commits, repository updates and other GitHub activity in your profile."/>
                 ) : (
-                  <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-6">
+                  <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-6">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
                         <IoLogoGithub />
@@ -943,7 +943,7 @@ const Profile = () => {
 
 const MiniStat = ({ value, label }) => {
   return (
-    <div className="rounded-xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 px-3 py-3 text-center">
+    <div className="rounded-xl bg-white border border-gray-200/80 border border-gray-200 px-3 py-3 text-center">
       <p className="font-semibold text-sm"> {value ?? 0} </p>
       <p className="text-[10px] text-gray-400 mt-1"> {label} </p>
     </div>
@@ -959,7 +959,7 @@ const StatCard = ({
   description,
 }) => {
   return (
-    <div className="rounded-2xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-4">
+    <div className="rounded-2xl bg-white border border-gray-200/80 border border-gray-200 p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs text-gray-500"> {title} </p>
@@ -1020,7 +1020,7 @@ const RepositoryCard = ({
   languageColors,
 }) => {
   return (
-    <div className="group rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 hover:border-purple-500/20 hover:bg-gray-100 transition p-5">
+    <div className="group rounded-3xl bg-white border border-gray-200/80 border border-gray-200 hover:border-purple-500/20 hover:bg-gray-100 transition p-5">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
@@ -1069,7 +1069,7 @@ const GitHubLocked = ({
         </div>
         <h3 className="text-lg font-semibold mt-5"> {title} </h3>
         <p className="text-sm text-gray-500 mt-2 leading-6"> {description} </p>
-        <NavLink to="/SingIn" className="inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-xl bg-gray-800 text-white shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25 hover:-translate-y-0.5 transition text-sm font-medium" >
+        <NavLink to="/SingIn" className="inline-flex items-center gap-2 mt-6 px-5 py-3 rounded-xl bg-gray-800 text-white hover:-translate-y-0.5 transition text-sm font-medium" >
           <IoLogoGithub /> Connect GitHub <IoChevronForwardOutline />
         </NavLink>
       </div>
@@ -1085,7 +1085,7 @@ const EmptyState = ({
   description,
 }) => {
   return (
-    <div className="rounded-3xl bg-white border border-gray-200/80 shadow-[0_8px_30px_rgba(15,23,42,0.045)] border border-gray-200 p-10 text-center mt-5">
+    <div className="rounded-3xl bg-white border border-gray-200/80 border border-gray-200 p-10 text-center mt-5">
       <div className="w-12 h-12 mx-auto rounded-2xl bg-gray-100 flex items-center justify-center">
         <Icon className="text-xl text-gray-500" />
       </div>

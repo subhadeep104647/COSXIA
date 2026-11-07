@@ -361,8 +361,7 @@ const Notebook = () => {
         marginLeft: "var(--nova-sidebar-width, 260px)",
         width: "calc(100% - var(--nova-sidebar-width, 260px))",
         transition: "margin-left 300ms ease, width 300ms ease",
-      }}
-    >
+      }}>
       <style>{`
         @media (max-width: 767px) {
           .nova-notebook-shell {
@@ -375,9 +374,8 @@ const Notebook = () => {
       {/* BACKGROUND GLOW */}
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-200px] left-[20%] w-[500px] h-[500px] rounded-full bg-purple-600/10 blur-[150px]" />
-
-        <div className="absolute bottom-[-200px] right-[10%] w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[150px]" />
+        <div className="absolute top-[-200px] left-[20%] w-[500px] h-[500px] rounded-full bg-white blur-[150px]" />
+        <div className="absolute bottom-[-200px] right-[10%] w-[500px] h-[500px] rounded-full bg-white blur-[150px]" />
       </div>
 
       {/* MAIN NOTEBOOK EDITOR */}
@@ -436,8 +434,8 @@ const Notebook = () => {
                 {/* PAGE ICON */}
 
                 <div className="mb-6 flex flex-row gap-2">
-                  <div className=" w-11 h-11 rounded-xl bg-purple-500/[0.08] border border-purple-500/10 flex items-center justify-center ">
-                    <FileText size={21} className="text-purple-400"/>
+                  <div className=" w-11 h-11 rounded-xl bg-gray-500/10 border border-gray-300 flex items-center justify-center ">
+                    <FileText size={21} className="text-gray-800"/>
                   </div>
                   {/* TITLE */}
 
@@ -450,12 +448,10 @@ const Notebook = () => {
 
                 <div className=" flex items-center gap-4 mb-8 text-[10px] text-gray-600 ">
                   <div className="flex items-center gap-1.5">
-                    <Clock3 size={11} />
-                    Last edited{" "}
-                    {activePage.updatedAt}
+                    <Clock3 size={11} /> Last edited{" "} {activePage.updatedAt}
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Pin size={11} /> NOVA Notebook
+                    <Pin size={11} /> COSXIA Notebook
                   </div>
                 </div>
 
@@ -470,15 +466,12 @@ const Notebook = () => {
 
             <div className=" flex-1 flex items-center justify-center px-6">
               <div className="text-center">
-                <div className=" w-16 h-16 mx-auto mb-5 rounded-2xl bg-purple-500/[0.08] flex items-center justify-center">
-                  <FileText size={28} className="text-purple-400"/>
+                <div className=" w-16 h-16 mx-auto mb-5 rounded-2xl bg-gray-500/10 flex items-center justify-center">
+                  <FileText size={28} className="text-gray-800"/>
                 </div>
-
                 <h2 className="text-lg font-semibold text-white"> Your notebook is empty </h2>
-
                 <p className="text-xs text-gray-600 mt-2 mb-5"> Create a page and start writing.</p>
-
-                <button onClick={addPage} className=" inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-xs font-medium text-white shadow-lg shadow-purple-900/20 hover:scale-[1.02] transition">
+                <button onClick={addPage} className=" inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-black text-xs font-medium text-white hover:scale-[1.02] transition">
                   <Plus size={14} /> New Page
                 </button>
               </div>

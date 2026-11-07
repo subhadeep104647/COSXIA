@@ -1,20 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  UserRound,
-  Settings,
-  BookUser,
-  Camera,
-  Link2,
-  Mail,
-  AtSign,
-  UserRoundPen,
-  MapPin,
-  Globe,
-  ShieldCheck,
-  Check,
-  ChevronRight,
-  Image as ImageIcon,
-} from "lucide-react";
+import { UserRound, Settings, BookUser, Camera, Link2, Mail, AtSign, UserRoundPen, MapPin, Globe, ShieldCheck, Check, ChevronRight, Image as ImageIcon,} from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Edit_Profile = () => {
@@ -89,8 +74,7 @@ const Edit_Profile = () => {
     window.setTimeout(() => setSaved(false), 2600);
   };
 
-  const inputClass =
-    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-violet-400 focus:ring-4 focus:ring-violet-500/10";
+  const inputClass = "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 hover:border-slate-300 focus:border-violet-400 focus:ring-4 focus:ring-violet-500/10";
   const labelClass = "mb-2 block text-sm font-semibold text-slate-700";
 
   const sections = [
@@ -102,43 +86,31 @@ const Edit_Profile = () => {
   const Field = ({ label, children, hint }) => (
     <div>
       <label className={labelClass}>{label}</label>
-      {children}
-      {hint && <p className="mt-2 text-xs text-slate-400">{hint}</p>}
+      {children} {hint && <p className="mt-2 text-xs text-slate-400">{hint}</p>}
     </div>
   );
 
   return (
-    <div className="min-h-screen w-full bg-[#f8fafc] text-slate-800">
-      <div className="border-b border-slate-200/80 bg-white">
+    <div className="min-h-screen w-full bg-white text-slate-800">
+      <div className=" bg-white">
         <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8">
-          <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
-            <Settings size={14} />
-            <span>Settings</span>
-            <ChevronRight size={13} />
-            <span className="text-slate-600">Your preferences</span>
-          </div>
-          <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-slate-900">Settings</h1>
-              <p className="mt-2 text-sm text-slate-500">
-                Manage your account and how you appear across NOVA.
-              </p>
+          <div className="flex items-center justify-between gap-2 text-xs font-medium text-slate-400">
+            <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+              <Settings size={14} />
+              <span>Settings</span>
+              <ChevronRight size={13} />
+              <span className="text-slate-600">Your Profile</span>
             </div>
-            <Link
-              to="/Profile"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              <UserRound size={16} /> View profile
+            <Link to="/Profile" className="flex items-center gap-2 rounded-4xl border border-slate-200 bg-white px-2.5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50">
+              <UserRound size={16} />
             </Link>
           </div>
         </div>
       </div>
 
       <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-7 px-5 py-8 sm:px-8 lg:grid-cols-[260px_minmax(0,1fr)]">
-        <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_4px_24px_rgba(15,23,42,0.03)]">
-          <p className="px-3 pb-3 pt-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
-            Personal settings
-          </p>
+        <aside className="h-fit rounded-2xl border border-gray-200/80 border border-gray-200 bg-white p-3">
+          <p className="px-3 pb-3 pt-2 text-[10px] font-bold uppercase tracking-[0.18em] text-gray-400"> Personal settings </p>
           <nav className="space-y-1">
             {sections.map(({ id, label, description, icon: Icon }) => {
               const active = activeSection === id;
@@ -149,74 +121,51 @@ const Edit_Profile = () => {
                   onClick={() => setActiveSection(id)}
                   className={`group flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition ${
                     active
-                      ? "bg-violet-50 text-violet-700 ring-1 ring-violet-100"
+                      ? "bg-nav/10 text-purple-500"
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                   }`}
                 >
-                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
-                    active ? "bg-white text-violet-600 shadow-sm" : "bg-slate-100 text-slate-500 group-hover:bg-white"
-                  }`}>
+                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${ active ? "bg-white text-button" : "bg-white text-gray-500 group-hover:bg-white"}`}>
                     <Icon size={17} />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block text-sm font-semibold">{label}</span>
-                    <span className={`mt-0.5 block text-[11px] ${active ? "text-violet-500" : "text-slate-400"}`}>
-                      {description}
+                    <span className={`mt-0.5 block text-[11px] ${active ? "text-purple-400" : "text-gray-400"}`}> {description}
                     </span>
                   </span>
-                  {active && <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />}
                 </button>
               );
             })}
           </nav>
-          <div className="my-4 border-t border-slate-100" />
-          <p className="px-3 pb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">NOVA</p>
-          <Link
-            to="/Profile"
-            className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
-              <UserRound size={17} />
-            </span>
-            View profile
-          </Link>
-          <div className="mt-4 rounded-xl bg-gradient-to-br from-violet-50 via-white to-cyan-50 p-4">
-            <div className="flex items-center gap-2 text-violet-700">
+          <div className="my-4 border border-gray-200/80" />
+          <div className="mt-4 rounded-xl bg-nav/10 p-4">
+            <div className="flex items-center gap-2 text-purple-500">
               <ShieldCheck size={16} />
               <span className="text-xs font-semibold">Your profile, your control</span>
             </div>
-            <p className="mt-2 text-xs leading-relaxed text-slate-500">
-              Keep your NOVA account details up to date.
-            </p>
+            <p className="mt-2 text-xs leading-relaxed text-slate-500"> Keep your COSXIA account details up to date. </p>
           </div>
         </aside>
 
         <main className="min-w-0">
           {activeSection === "profile" && (
             <div className="space-y-6">
-              <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_4px_24px_rgba(15,23,42,0.03)] sm:p-8">
-                <div className="border-b border-slate-100 pb-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-violet-600">Appearance</p>
-                  <h2 className="mt-2 text-xl font-bold text-slate-900">Public profile</h2>
-                  <p className="mt-1 text-sm text-slate-500">Choose how people see you on NOVA.</p>
-                </div>
+              <section className="rounded-2xl border border-gray-200 bg-white p-6">
+                  <h2 className="mt-2 text-xl font-bold text-purple-500">Your profile</h2>
+                  <p className="mt-1 text-sm text-gray-400">Choose how people see you on.</p>
                 <div className="mt-7 flex flex-col gap-5 sm:flex-row sm:items-center">
                   <div className="relative h-24 w-24 shrink-0">
-                    <img src={image} alt="Profile" className="h-24 w-24 rounded-2xl border border-slate-200 object-cover shadow-sm" />
-                    <span className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-xl border-2 border-white bg-violet-600 text-white shadow">
-                      <ImageIcon size={14} />
-                    </span>
+                    <img src={image} alt="Profile" className="h-24 w-24 rounded-4xl border border-gray-200 object-cover" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-slate-800">Profile picture</h3>
                     <p className="mt-1 text-xs text-slate-500">Use a clear image so others can recognize your profile.</p>
                     <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
                     <div className="mt-4 flex flex-wrap gap-2">
-                      <button type="button" onClick={() => fileInputRef.current?.click()} className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-slate-700">
+                      <button type="button" onClick={() => fileInputRef.current?.click()} className="inline-flex items-center gap-2 rounded-xl bg-gray-800 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-slate-700">
                         <Camera size={14} /> Upload new
                       </button>
-                      <button type="button" onClick={handleRemove} className="rounded-lg border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50">
-                        Remove photo
+                      <button type="button" onClick={handleRemove} className="rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50"> Remove photo
                       </button>
                     </div>
                   </div>
@@ -281,7 +230,7 @@ const Edit_Profile = () => {
                 </Field>
                 <Field label="Bio" hint="A short introduction that appears on your NOVA profile.">
                   <textarea value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Write a little about yourself..." rows={5} maxLength={280} className={`${inputClass} resize-y`} />
-                  <p className="mt-1 text-right text-[11px] text-slate-400">{bio.length}/280</p>
+                  <p className="mt-1 text-right text-[11px] text-gray-400">{bio.length}/280</p>
                 </Field>
                 <Field label="Pronouns">
                   <select value={pronouns} onChange={(e) => setPronouns(e.target.value)} className={`${inputClass} cursor-pointer`}>
@@ -299,13 +248,11 @@ const Edit_Profile = () => {
           )}
 
           <div className="mt-6 flex flex-col-reverse items-start justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_24px_rgba(15,23,42,0.03)] sm:flex-row sm:items-center sm:px-8">
-            <p className="text-xs text-slate-400">Your changes will be reflected on your NOVA profile.</p>
+            <p className="text-xs text-slate-400">Your changes will be reflected on your COSXIA profile.</p>
             <div className="flex items-center gap-3">
-              {saved && <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600"><Check size={14} /> Saved</span>}
+              {saved && <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-500"><Check size={14} /> Saved</span>}
               <Link to="/Profile" className="rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-500 transition hover:bg-slate-100">Cancel</Link>
-              <button type="button" onClick={handleSave} className="rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-500/20 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-violet-500/25">
-                Save changes
-              </button>
+              <button type="button" onClick={handleSave} className="rounded-xl bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 "> Save changes</button>
             </div>
           </div>
         </main>

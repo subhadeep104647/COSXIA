@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import How_It_Works from "./How_It_Works";
 import Features from "./Features";
 import Footer from "../components/Footer";
+import Compare from "./Compare";
 
 const vulnerabilities = [
   {
@@ -1082,6 +1083,30 @@ export default function Home() {
           className="inline-block tracking-wide"
         >
           <How_It_Works />
+        </motion.div>
+      </section>
+
+      <section className="relative z-30 mt-20 flex items-center justify-center">
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 50,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          className="inline-block tracking-wide"
+        >
+          <Compare />
         </motion.div>
       </section>
 

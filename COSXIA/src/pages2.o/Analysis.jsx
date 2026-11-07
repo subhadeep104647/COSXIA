@@ -3,8 +3,8 @@ import { ShieldCheck, ShieldAlert, AlertTriangle, AlertCircle, CheckCircle2, Git
 
 const demoAnalysis = {
   repository: {
-    name: "NOVA",
-    fullName: "Subhadeep/NOVA",
+    name: "COSXIA",
+    fullName: "Subhadeep/COSXIA",
     branch: "main",
   },
 
@@ -140,10 +140,7 @@ const Analysis = () => {
 
       try {
 
-        // -------------------------------------------------
-        // OPTION 1:
-        // Read result saved by NewChat.jsx
-        // -------------------------------------------------
+        // OPTION 1: Read result saved by NewChat.jsx
 
         const savedResult =
           localStorage.getItem("nova_analysis_result");
@@ -201,11 +198,8 @@ const Analysis = () => {
 
         }
 
-
-        // -------------------------------------------------
         // DEMO DATA
-        // -------------------------------------------------
-
+        
         setAnalysis(demoAnalysis);
 
       } catch (error) {
@@ -290,54 +284,11 @@ const Analysis = () => {
   if (loading) {
 
     return (
-      <main
-        className="
-          min-h-screen
-          w-full
-          md:ml-[var(--nova-sidebar-width)]
-          md:w-[calc(100%-var(--nova-sidebar-width))]
-          transition-[margin-left,width] duration-300 ease-out
-          bg-white
-          px-5
-          md:px-8
-          py-8
-          text-black
-        "
-      >
-
+      <main className=" min-h-screen w-full md:ml-[var(--nova-sidebar-width)] md:w-[calc(100%-var(--nova-sidebar-width))] transition-[margin-left,width] duration-300 ease-out bg-white px-5 md:px-8 py-8 text-black">
         <div className="max-w-7xl mx-auto">
-
-          <div
-            className="
-              animate-pulse
-              h-8
-              w-64
-              rounded-lg
-              bg-gray-100
-            "
-          />
-
-          <div
-            className="
-              mt-3
-              animate-pulse
-              h-4
-              w-96
-              max-w-full
-              rounded
-              bg-white
-            "
-          />
-
-          <div
-            className="
-              grid
-              grid-cols-1
-              md:grid-cols-4
-              gap-4
-              mt-8
-            "
-          >
+          <div className=" animate-pulse h-8 w-64 rounded-lg bg-gray-100"/>
+          <div className=" mt-3 animate-pulse h-4 w-96 max-w-full rounded bg-white "/>
+          <div className=" grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 ">
 
             {[1, 2, 3, 4].map((item) => (
 
@@ -396,7 +347,7 @@ const Analysis = () => {
           -translate-x-1/2
           w-[600px]
           h-[300px]
-          bg-gradient-to-r from-purple-200/40 via-blue-100/40 to-cyan-100/40
+          bg-white
           blur-[100px]
           rounded-full
         "

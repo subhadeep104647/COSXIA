@@ -17,6 +17,7 @@ import About from "./pages/About";
 import Not_Found from "./pages/Not_Found";
 import Terms_and_con from "./pages/Terms_and_con";
 import Privacy_Policy from "./pages/Privacy_Policy";
+import Compare from "./pages/Compare";
 
 // Private Pages
 import Profile from "./pages2.o/Profile";
@@ -190,6 +191,11 @@ const App = () => {
         <Route
           path="/How_It_Works"
           element={<How_It_Works />}
+        />
+
+        <Route
+          path="/Compare"
+          element={<Compare />}
         />
 
         <Route

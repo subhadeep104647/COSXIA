@@ -298,7 +298,7 @@ const Sidebar = () => {
 
               {repoName ? (
                 <div className=" flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-gray-300 bg-white/[0.035] ">
-                  <IoFolderOutline className=" text-purple-400 shrink-0 "/>
+                  <IoFolderOutline className=" text-gray-400 shrink-0 "/>
                   <span className="truncate"> {repoName}</span>
                 </div>
 
@@ -346,11 +346,8 @@ const Sidebar = () => {
           <NavLink to="/Profile" onClick={handleNavigation} className={` flex items-center ${ isOpen ? "gap-3 px-3" : "justify-center" } h-12 rounded-xl bg-white/[0.04] backdrop-blur-xl hover:bg-white/[0.08] transition-all `} title={ !isOpen ? "Profile" : "" } >
 
             {/* AVATAR */}
-
-            <div className=" w-8 h-8 shrink-0 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-500 to-blue-500 text-gray-900 text-sm font-semibold " > S </div>
-
+            <div className=" w-8 h-8 shrink-0 rounded-full flex items-center justify-center bg-gray-800 text-white text-sm font-semibold " > S </div>
             {isOpen && (
-
               <div className="min-w-0">
                 <p className=" text-sm font-semibold text-gray-700 truncate "> Subhadeep </p>
                 <p className=" text-[11px] text-gray-500 "> View Profile </p>
