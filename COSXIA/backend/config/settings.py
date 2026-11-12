@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "development-only-cosxia-key"
@@ -18,7 +19,16 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 TEMPLATES = []
 WSGI_APPLICATION = "config.wsgi.application"
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("COSXIA_DB_NAME", "cosxia"),
+        "USER": os.getenv("COSXIA_DB_USER", "postgres"),
+        "PASSWORD": os.getenv("COSXIA_DB_PASSWORD", ""),
+        "HOST": os.getenv("COSXIA_DB_HOST", "127.0.0.1"),
+        "PORT": os.getenv("COSXIA_DB_PORT", "5432"),
+    }
+}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_URL = "static/"
 CORS_ALLOWED_ORIGINS = [

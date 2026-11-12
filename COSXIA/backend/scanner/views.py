@@ -4,6 +4,7 @@ from pathlib import Path
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import UploadedSource
 from .scanner import scan_code
 
 MAX_SOURCE_SIZE = 5 * 1024 * 1024
@@ -45,6 +46,12 @@ def upload(request):
         code = source_file.read().decode("utf-8")
     except UnicodeDecodeError:
         return _error("Source file must be valid UTF-8.")
+    UploadedSource.objects.create(
+        filename=source_file.name,
+        language=LANGUAGES[suffix],
+        code=code,
+        size=source_file.size,
+    )
     return JsonResponse(
         {"filename": source_file.name, "language": LANGUAGES[suffix], "code": code}
     )

@@ -1,6 +1,8 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
+from .models import UploadedSource
+
 
 class ScannerApiTests(TestCase):
     def test_upload_returns_source_metadata(self):
@@ -11,6 +13,11 @@ class ScannerApiTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["language"], "Python")
         self.assertEqual(response.json()["code"], "print('ok')")
+        uploaded_source = UploadedSource.objects.get()
+        self.assertEqual(uploaded_source.filename, "example.py")
+        self.assertEqual(uploaded_source.language, "Python")
+        self.assertEqual(uploaded_source.code, "print('ok')")
+        self.assertEqual(uploaded_source.size, len(b"print('ok')"))
 
     def test_upload_rejects_unsupported_extension(self):
         response = self.client.post(
