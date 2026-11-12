@@ -357,19 +357,28 @@ function login(username, password) {
                   <label className=" cursor-pointer flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-white text-xs text-gray-500 hover:text-gray-500 hover:bg-white/[0.05] transition " >
                     <Upload size={14} /> Upload File
                     <input type="file" className="hidden" accept=" .js, .jsx, .ts, .tsx, .py, .java, .cpp, .c, .php, .go, .rb, .sql "
-                      onChange={(e) => {
-                        const file =
-                          e.target.files?.[0];
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
                         if (!file) return;
-                        const reader =
-                          new FileReader();
-                        reader.onload = (event) => {
-                          setCode(
-                            event.target
-                              ?.result || ""
-                          );
-                        };
-                        reader.readAsText(file); }}/>
+                        setError("");
+                        const formData = new FormData();
+                        formData.append("file", file);
+                        try {
+                          const response = await fetch(`${API_URL}/api/upload`, {
+                            method: "POST",
+                            body: formData,
+                          });
+                          const data = await response.json();
+                          if (!response.ok) {
+                            throw new Error(data.message || "Unable to upload file.");
+                          }
+                          setCode(data.code);
+                        } catch (err) {
+                          setError(err.message || "Unable to upload file.");
+                        } finally {
+                          e.target.value = "";
+                        }
+                      }}/>
                   </label>
 
                   {/* ANALYZE */}
