@@ -5,6 +5,11 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import UploadedSource
+from .ollama import (
+    OllamaAnalysisError,
+    analyze_with_ollama,
+    deterministic_fallback_enabled,
+)
 from .scanner import scan_code
 
 MAX_SOURCE_SIZE = 5 * 1024 * 1024
@@ -69,20 +74,23 @@ def analyze(request):
     source = payload.get("source") if isinstance(payload, dict) else None
     if source != "manual" or not isinstance(code, str) or not code.strip():
         return _error("Provide {source: 'manual', code: '...'} in the request body.")
-    vulnerabilities = scan_code(code)
-    risk_level = "high" if vulnerabilities else "low"
-    summary = (
-        f"Detected {len(vulnerabilities)} potential issue(s) with the deterministic placeholder scanner."
-        if vulnerabilities
-        else "No obvious insecure patterns were detected by the deterministic placeholder scanner."
-    )
-    return JsonResponse(
-        {
-            "riskLevel": risk_level,
-            "summary": summary,
-            "vulnerabilities": vulnerabilities,
-            "message": "AI analysis is deferred; results are from deterministic pattern checks only.",
-            "suggestedFix": vulnerabilities[0]["recommendation"] if vulnerabilities else "",
-            "secureCode": code,
-        }
-    )
+    if deterministic_fallback_enabled():
+        vulnerabilities = scan_code(code)
+        return JsonResponse(
+            {
+                "riskLevel": "high" if vulnerabilities else "low",
+                "summary": (
+                    f"Detected {len(vulnerabilities)} potential issue(s) with the deterministic scanner."
+                    if vulnerabilities
+                    else "No obvious insecure patterns were detected by the deterministic scanner."
+                ),
+                "vulnerabilities": vulnerabilities,
+                "message": "Analysis used the explicitly configured deterministic fallback.",
+                "suggestedFix": vulnerabilities[0]["recommendation"] if vulnerabilities else "",
+                "secureCode": code,
+            }
+        )
+    try:
+        return JsonResponse(analyze_with_ollama(code))
+    except OllamaAnalysisError as exc:
+        return JsonResponse({"message": str(exc), "error": exc.code}, status=502)
